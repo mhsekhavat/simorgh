@@ -1,0 +1,44 @@
+@startuml
+object "سامانه سیمرغ" as samane
+object "بازدید کننده" as anonymous
+object "سرور هتل" as hotel
+object "سرور بانک" as bank
+object "مشتری" as customer
+object "مدیر هتل" as mh
+object "مدیر سامانه" as ms
+
+samane ..> anonymous : "نتیجه اعتبارسنجی مشخصات کاربری"
+samane ..> anonymous : "نمایش فرم ایجاد حساب کاربری"
+samane ..> anonymous : "نتیجه صحت نام کاربری و کلمه  عبور"
+samane ..> anonymous : "نمایش فرم ورود به سیستم"
+samane ..> anonymous : "نمایش مشخصات اتاق ها"
+samane ..> anonymous : "نتیجه جستجوی اتاق و هتل"
+hotel ..> samane : "وضعیت اتاق"
+samane ..> hotel : "درخواست رزرو موقت(۳۰ دقیقه‌ای) اتاق"
+samane ..> hotel : "درخواست رزرو نهایی اتاق"
+samane ..> hotel : "درخواست بررسی وضعیت اتاق"
+anonymous ..> samane : "جستجوی اتاق‌ها و هتل"
+anonymous ..> samane : "درخواست مشاهده‌ی مشخصات اتاق"
+anonymous ..> samane : "درخواست ورود به سیستم"
+anonymous ..> samane : "درخواست ساخت حساب کاربری و مشخصات"
+samane ..> bank : "درخواست پرداخت"
+bank ..> samane : "تایید پرداخت"
+customer ..> samane : "درخواست خروج از سیستم"
+customer ..> samane : "درخواست بررسی وضعیت اتاق"
+samane ..> customer : "پیام تایید خروج از سیستم"
+samane ..> customer : "اعلام وضعیت خالی بودن اتاق"
+samane ..> customer : "هدایت به سیستم بانکی"
+samane ..> customer : "نمایش برگه رزرواسیون نهایی جهت تهیه ی پرینت"
+mh ..> samane : "ارسال اطلاعات هتل جهت ثبت"
+mh ..> samane : "ویرایش مشخصات هتل"
+mh ..> samane : "درخواست گزارش مالی"
+mh ..> samane : "درخواست گزارش وضعیت رزروها"
+samane ..> mh : "مشاهده ی وضعیت تایید هتل"
+samane ..> mh : "ارسال گزارش مالی"
+samane ..> mh : "ارسال گزارش وضعیت رزروها"
+ms ..> samane : "ویرایش مشخصات هتل"
+ms ..> samane : "تایید / رد هتل جدید"
+ms ..> samane : "درخواست گزارش مالی"
+ms ..> samane : "درخواست گزارش وضعیت رزروها"
+samane ..> ms : "نمایش لیست هتل ها"
+@enduml
