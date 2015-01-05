@@ -1,0 +1,6 @@
+install pip
+install http://virtualenvwrapper.readthedocs.org/en/latest/install.html
+mkvirtualenv -p /usr/bin/python2 simorgh
+workon simorgh  <-!=--> deactivate
+
+
