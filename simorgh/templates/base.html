@@ -1,23 +1,24 @@
 {% load bootstrap3 %}
-
+{% load staticfiles %}
 <!DOCTYPE html>
 
-<html>
-<head lang="en">
+<html lang="fa">
+<head>
     <meta charset="UTF-8">
     <title></title>
-    {% bootstrap_css %}
-    {% bootstrap_javascript %}
+    {% block css %}
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/bootstrap-rtl.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% endblock %}
+    {% block js %}
+        <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+    {% endblock %}
 </head>
 <body>
-{% if user.is_authenticated %}
-<h1>Simorgh says... hello {{ user.username }}!</h1>
-<a href="{% url 'logout' %}">Logout</a><br />
-{% else %}
-<h1>Simorgh says... hello world!</h1>
-<a href="{% url 'login' %}">Login</a>
-{% endif %}
-{% bootstrap_messages %}
+{% include 'header.html' %}
 {% block content %}
 {% endblock %}
-</body> </html>
+</body>
+</html>

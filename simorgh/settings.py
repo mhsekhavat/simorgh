@@ -91,3 +91,7 @@ STATIC_URL = '/static/'
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'simorgh/templates'),
 )
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'simorgh/static'),
+)

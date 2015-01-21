@@ -1,0 +1,28 @@
+{% load bootstrap3 %}
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">
+                سامانه سیمرغ
+            </a>
+        </div>
+        <div class="nav navbar-nav">
+            {% if user.is_authenticated %}
+                <li class="active">
+                    <a href="{% url 'logout' %}">
+                        خروج
+                    </a>
+                </li>
+            {% else %}
+                <li class="active">
+                    <a href="{% url 'login' %}">
+                        ورود
+                    </a>
+                </li>
+
+            {% endif %}
+        </div>
+        <!--/.navbar-collapse -->
+    </div>
+</nav>
