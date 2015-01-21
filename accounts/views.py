@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.template.context import RequestContext
 
+
 def user_login(request):
     context = RequestContext(request)
     if request.method == 'POST':
@@ -21,6 +22,7 @@ def user_login(request):
             return HttpResponse("Invalid login details supplied.")
     else:
         return render_to_response('accounts/accounts_login.html', {}, context)
+
 
 @login_required
 def user_logout(request):

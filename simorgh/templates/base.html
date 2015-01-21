@@ -1,4 +1,5 @@
 {% load bootstrap3 %}
+
 <!DOCTYPE html>
 
 <html>
@@ -11,13 +12,12 @@
 <body>
 {% if user.is_authenticated %}
 <h1>Simorgh says... hello {{ user.username }}!</h1>
-<a href="/accounts/logout/">Logout</a><br />
+<a href="{% url 'logout' %}">Logout</a><br />
 {% else %}
 <h1>Simorgh says... hello world!</h1>
-<a href="/accounts/login">Login</a>
+<a href="{% url 'login' %}">Login</a>
 {% endif %}
 {% bootstrap_messages %}
 {% block content %}
 {% endblock %}
-</body>
-</html>
+</body> </html>
