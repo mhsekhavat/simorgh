@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+{% load staticfiles %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <h1>
+                ثبت نام در سامانه
+            </h1>
+
+            {% if registered %}
+                <div class="col-md-12">
+                <strong>
+                با تشکر از ثبت نام شما در سامانه‌ی سیمرغ
+                </strong>
+                    <a href="/">
+                     صفحه‌ی اصلی
+                    </a><br/>
+                </div>
+            {% else %}
+                <div class="col-md-12">
+                    <form id="user_form" method="post" action="/accounts/register/"
+                          enctype="multipart/form-data">
+
+                        {% csrf_token %}
+
+                        {{ user_form.as_p }}
+                        {{ profile_form.as_p }}
+                        {% bootstrap_button 'ثبت نام' %}
+                    </form>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
