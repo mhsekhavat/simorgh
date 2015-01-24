@@ -4,16 +4,16 @@ register accounts/registers
 confirm accounts/confirm
 userEdit accounts/Edit
 
-hotelList hotels/list
+hotel_list hotels/list
 hotelView hotels/view
 hotelSearch hotels/search
 
-hotelEdit hotels/Edit
+hotel_edit hotels/Edit
 hotelRoomClassEdite hotels/roomClass
 hotelNew hotels/new
 hotelApprove hotels/approve
 
-reservesetStatus reserve/status
+reserveseStatus reserve/status
 reservePay reserve/pay
 reserveFinalApprove reserve/finalApprove
 reserveVacher reserve/vacher

@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from django.views.generic.base import TemplateView
-import hotels.urls, accounts.urls
+import hotels.urls, accounts.urls, reservation.urls, reports.urls
 from hotels.views import HotelsList
 
 urlpatterns = patterns(
@@ -14,4 +14,6 @@ urlpatterns = patterns(
     url(r'^admin/', include(admin.site.urls)),
     url(r'^hotels/', include(hotels.urls)),
     url(r'^accounts/', include(accounts.urls)),
+    url(r'^reservation/', include(reservation.urls)),
+    url(r'^reports/', include(reports.urls)),
 )

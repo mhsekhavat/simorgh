@@ -12,4 +12,9 @@ urlpatterns = patterns(
     '',
     url(r'^$', ListView.as_view(model=Hotel), name='hotel_list'),
     url(r'^(?P<pk>\d+)/', include(hotel_patterns)),
+    url(r'^view/$', (lambda: None), name='hotel_view'),
+    url(r'^search/$', (lambda: None), name='hotel_search'),
+    url(r'^roomClass/$', (lambda: None), name='hotel_room_class_edit'),
+    url(r'^new/$', (lambda: None), name='hotel_new'),
+    url(r'^approve/$', (lambda: None), name='hotel_approve'),
 )
