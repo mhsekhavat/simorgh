@@ -83,6 +83,16 @@ USE_L10N = True
 USE_TZ = True
 
 
+EMAIL_HOST = 'smtp.gmail.com'
+
+EMAIL_HOST_USER = 'technical.presenters@gmail.com'
+
+EMAIL_HOST_PASSWORD = 'technicalPresenters'
+
+EMAIL_PORT = 587
+
+EMAIL_USE_TLS = True
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
