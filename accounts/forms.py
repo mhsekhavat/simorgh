@@ -1,10 +1,11 @@
+# -*- coding: utf-8 -*-
 from django import forms
 from models import UserProfile
 from django.contrib.auth.models import User
 
 
 class UserForm(forms.ModelForm):
-    password = forms.CharField(widget=forms.PasswordInput())
+    password = forms.CharField(widget=forms.PasswordInput(), label=u'رمز عبور')
 
     class Meta:
         model = User
@@ -15,4 +16,3 @@ class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ('phoneNumber',)
-        #field = ('phoneNumber')
