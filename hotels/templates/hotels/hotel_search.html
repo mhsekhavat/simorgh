@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                جستجو بر اساس موقعیت
+                <form method="post">
+                    {% csrf_token %}
+                    {% bootstrap_form location_form %}
+                    {% bootstrap_button 'ثبت' %}
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
