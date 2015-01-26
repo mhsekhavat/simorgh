@@ -12,7 +12,7 @@ from django.contrib.sitemaps.views import sitemap
 class StaticViewsSitemap(Sitemap):
     def items(self):
         return ['home', 'hotel_list', 'login', 'register', 'accounts_edit', 'confirm', 'hotel_list', 'hotel_view',
-                'hotel_search', 'hotel_new']
+                'hotel_new']
 
     def location(self, obj):
         return reverse(obj)
