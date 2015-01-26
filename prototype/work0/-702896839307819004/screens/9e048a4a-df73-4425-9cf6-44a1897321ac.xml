@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<screen>
+  <parentCode />
+  <folderPosition>2</folderPosition>
+  <name>user_home</name>
+  <code>9e048a4a-df73-4425-9cf6-44a1897321ac</code>
+  <templateID>f39803f7-df02-4169-93eb-7547fb8c961a</templateID>
+  <date>21/01/2015 19:03:29</date>
+  <note></note>
+  <legend-item></legend-item>
+  <pageAlignment>LEFT</pageAlignment>
+  <orientation>PORTRAIT</orientation>
+  <backgroundGrowth>BOTH</backgroundGrowth>
+  <item-group id="e5a39d08-af70-4b1d-8fa1-ffb60cf74ea8" visible="true">
+    <rectangle id="643612e5-670f-4bdc-8c94-796d28f756f0" auto-fit="false" hidden="false" locked="false" lockType="none" onTop="false" visible="true">
+      <text></text>
+      <style name="LnFRectangle">
+        <DimensionStyle width="770" height="97" />
+        <PositioningStyle left="0" top="0" />
+        <BackgroundStyle type="color" value="255r255g255b">
+          <image repeatX="true" repeatY="false">c071e2bf-203f-438b-b201-022f042ba414.jpg</image>
+        </BackgroundStyle>
+        <BorderStyle radius="0" leftColor="64r64g64b" topColor="64r64g64b" rightColor="64r64g64b" bottomColor="64r64g64b" leftStyle="solid" topStyle="solid" rightStyle="solid" bottomStyle="solid" leftWidth="2" topWidth="2" rightWidth="2" bottomWidth="2" />
+        <TextStyle color="51r51g51b" hAlign="center" vAlign="center" decoration="none" line-height="20" />
+        <FontStyle size="11" height="16">
+          <family>Arial</family>
+          <style name="Regular" weight="400" italic="normal" />
+        </FontStyle>
+        <TransparencyStyle value="0" />
+        <PaddingStyle top="0" left="0" bottom="0" right="0" />
+        <RotationStyle angle="0" />
+        <ShadowStyle>
+          <Box enable="false" />
+          <Text enable="false" />
+        </ShadowStyle>
+      </style>
+      <rich-text-range-list>
+        <text-range text-range-start="0" text-range-end="0">
+          <style name="LnFTextRange">
+            <FontStyle size="11" height="17">
+              <family>Arial</family>
+              <style name="Regular" weight="400" italic="normal" />
+            </FontStyle>
+            <TextStyle color="51r51g51b" hAlign="center" vAlign="center" decoration="none" line-height="20" />
+          </style>
+        </text-range>
+      </rich-text-range-list>
+      <userID>Rectangle_1</userID>
+    </rectangle>
+    <button id="4974bd36-6961-46b0-b130-8ce64acaabc0" auto-fit="false" hidden="false" locked="false" lockType="none" onTop="false" visible="true">
+      <text>خروج</text>
+      <style name="LnFButton">
+        <DimensionStyle width="82" height="29" />
+        <PositioningStyle left="671" top="11" />
+        <BackgroundStyle type="gradient">
+          <gradient firstColor="255r255g255b" secondColor="230r230g230b" orientation="vertical" double="false" />
+        </BackgroundStyle>
+        <BorderStyle radius="30" leftColor="205r205g205b" topColor="205r205g205b" rightColor="205r205g205b" bottomColor="205r205g205b" leftStyle="solid" topStyle="solid" rightStyle="solid" bottomStyle="solid" leftWidth="1" topWidth="1" rightWidth="1" bottomWidth="1" />
+        <TextStyle color="3r3g3b" hAlign="center" vAlign="center" decoration="none" line-height="0" />
+        <FontStyle size="11" height="16">
+          <family>Arial</family>
+          <style name="Regular" weight="400" italic="normal" />
+        </FontStyle>
+        <TransparencyStyle value="0" />
+        <PaddingStyle top="0" left="0" bottom="0" right="0" />
+        <RotationStyle angle="0" />
+        <ShadowStyle>
+          <Box enable="false" />
+          <Text enable="false" />
+        </ShadowStyle>
+      </style>
+      <userID>Button_1</userID>
+    </button>
+    <button id="1784607f-af35-45ab-b916-a46e9c263ac7" auto-fit="false" hidden="false" locked="false" lockType="none" onTop="false" visible="true">
+      <text>ویرایش اطلاعات</text>
+      <style name="LnFButton">
+        <DimensionStyle width="82" height="29" />
+        <PositioningStyle left="671" top="47" />
+        <BackgroundStyle type="gradient">
+          <gradient firstColor="255r255g255b" secondColor="230r230g230b" orientation="vertical" double="false" />
+        </BackgroundStyle>
+        <BorderStyle radius="30" leftColor="205r205g205b" topColor="205r205g205b" rightColor="205r205g205b" bottomColor="205r205g205b" leftStyle="solid" topStyle="solid" rightStyle="solid" bottomStyle="solid" leftWidth="1" topWidth="1" rightWidth="1" bottomWidth="1" />
+        <TextStyle color="3r3g3b" hAlign="center" vAlign="center" decoration="none" line-height="0" />
+        <FontStyle size="11" height="16">
+          <family>Arial</family>
+          <style name="Regular" weight="400" italic="normal" />
+        </FontStyle>
+        <TransparencyStyle value="0" />
+        <PaddingStyle top="0" left="0" bottom="0" right="0" />
+        <RotationStyle angle="0" />
+        <ShadowStyle>
+          <Box enable="false" />
+          <Text enable="false" />
+        </ShadowStyle>
+      </style>
+      <userID>Button_3</userID>
+    </button>
+    <image id="f67ea221-e561-4dad-ac09-436ff33d69a4" hidden="false" locked="false" lockType="none" onTop="false" visible="true">
+      <image-name>2f7bc837-62f2-4677-a751-78dca5ed8508.jpg</image-name>
+      <original-name>15.jpg</original-name>
+      <style name="LnFImage">
+        <DimensionStyle width="428" height="299" />
+        <PositioningStyle left="336" top="237" />
+        <BorderStyle radius="0" leftColor="0r0g0b" topColor="0r0g0b" rightColor="0r0g0b" bottomColor="0r0g0b" leftStyle="none" topStyle="none" rightStyle="none" bottomStyle="none" leftWidth="1" topWidth="1" rightWidth="1" bottomWidth="1" />
+        <TransparencyStyle value="0" />
+        <RotationStyle angle="0" />
+        <ShadowStyle>
+          <Box enable="false" />
+        </ShadowStyle>
+      </style>
+      <userID>Image_1</userID>
+    </image>
+    <button id="d219f5b6-8c86-422c-a1e1-f3c6840ce52a" auto-fit="false" hidden="false" locked="false" lockType="none" onTop="false" visible="true">
+      <text>صفحه اصلی</text>
+      <style name="LnFButton">
+        <DimensionStyle width="68" height="29" />
+        <PositioningStyle left="550" top="19" />
+        <BackgroundStyle type="gradient">
+          <gradient firstColor="255r255g255b" secondColor="230r230g230b" orientation="vertical" double="false" />
+        </BackgroundStyle>
+        <BorderStyle radius="30" leftColor="205r205g205b" topColor="205r205g205b" rightColor="205r205g205b" bottomColor="205r205g205b" leftStyle="solid" topStyle="solid" rightStyle="solid" bottomStyle="solid" leftWidth="1" topWidth="1" rightWidth="1" bottomWidth="1" />
+        <TextStyle color="3r3g3b" hAlign="center" vAlign="center" decoration="none" line-height="0" />
+        <FontStyle size="11" height="16">
+          <family>Arial</family>
+          <style name="Regular" weight="400" italic="normal" />
+        </FontStyle>
+        <TransparencyStyle value="0" />
+        <PaddingStyle top="0" left="0" bottom="0" right="0" />
+        <RotationStyle angle="0" />
+        <ShadowStyle>
+          <Box enable="false" />
+          <Text enable="false" />
+        </ShadowStyle>
+      </style>
+      <userID>Button_2</userID>
+    </button>
+    <button id="7c7870c8-3a69-45ab-801d-3a77bad4baab" auto-fit="false" hidden="false" locked="false" lockType="none" onTop="false" visible="true">
+      <text>جستجوی هتل</text>
+      <style name="LnFButton">
+        <DimensionStyle width="68" height="29" />
+        <PositioningStyle left="474" top="19" />
+        <BackgroundStyle type="gradient">
+          <gradient firstColor="255r255g255b" secondColor="230r230g230b" orientation="vertical" double="false" />
+        </BackgroundStyle>
+        <BorderStyle radius="30" leftColor="205r205g205b" topColor="205r205g205b" rightColor="205r205g205b" bottomColor="205r205g205b" leftStyle="solid" topStyle="solid" rightStyle="solid" bottomStyle="solid" leftWidth="1" topWidth="1" rightWidth="1" bottomWidth="1" />
+        <TextStyle color="3r3g3b" hAlign="center" vAlign="center" decoration="none" line-height="0" />
+        <FontStyle size="11" height="16">
+          <family>Arial</family>
+          <style name="Regular" weight="400" italic="normal" />
+        </FontStyle>
+        <TransparencyStyle value="0" />
+        <PaddingStyle top="0" left="0" bottom="0" right="0" />
+        <RotationStyle angle="0" />
+        <ShadowStyle>
+          <Box enable="false" />
+          <Text enable="false" />
+        </ShadowStyle>
+      </style>
+      <userID>Button_4</userID>
+    </button>
+    <button id="c91b373c-736c-4dd3-a81b-f1ab72290571" auto-fit="false" hidden="false" locked="false" lockType="none" onTop="false" visible="true">
+      <text>تماس با ما</text>
+      <style name="LnFButton">
+        <DimensionStyle width="68" height="29" />
+        <PositioningStyle left="400" top="19" />
+        <BackgroundStyle type="gradient">
+          <gradient firstColor="255r255g255b" secondColor="230r230g230b" orientation="vertical" double="false" />
+        </BackgroundStyle>
+        <BorderStyle radius="30" leftColor="205r205g205b" topColor="205r205g205b" rightColor="205r205g205b" bottomColor="205r205g205b" leftStyle="solid" topStyle="solid" rightStyle="solid" bottomStyle="solid" leftWidth="1" topWidth="1" rightWidth="1" bottomWidth="1" />
+        <TextStyle color="3r3g3b" hAlign="center" vAlign="center" decoration="none" line-height="0" />
+        <FontStyle size="11" height="16">
+          <family>Arial</family>
+          <style name="Regular" weight="400" italic="normal" />
+        </FontStyle>
+        <TransparencyStyle value="0" />
+        <PaddingStyle top="0" left="0" bottom="0" right="0" />
+        <RotationStyle angle="0" />
+        <ShadowStyle>
+          <Box enable="false" />
+          <Text enable="false" />
+        </ShadowStyle>
+      </style>
+      <userID>Button_5</userID>
+    </button>
+    <button id="0daa2cfa-9447-40b1-8740-81e4719fd097" auto-fit="false" hidden="false" locked="false" lockType="none" onTop="false" visible="true">
+      <text>درباره‌ی ما</text>
+      <style name="LnFButton">
+        <DimensionStyle width="68" height="29" />
+        <PositioningStyle left="327" top="19" />
+        <BackgroundStyle type="gradient">
+          <gradient firstColor="255r255g255b" secondColor="230r230g230b" orientation="vertical" double="false" />
+        </BackgroundStyle>
+        <BorderStyle radius="30" leftColor="205r205g205b" topColor="205r205g205b" rightColor="205r205g205b" bottomColor="205r205g205b" leftStyle="solid" topStyle="solid" rightStyle="solid" bottomStyle="solid" leftWidth="1" topWidth="1" rightWidth="1" bottomWidth="1" />
+        <TextStyle color="3r3g3b" hAlign="center" vAlign="center" decoration="none" line-height="0" />
+        <FontStyle size="11" height="16">
+          <family>Arial</family>
+          <style name="Regular" weight="400" italic="normal" />
+        </FontStyle>
+        <TransparencyStyle value="0" />
+        <PaddingStyle top="0" left="0" bottom="0" right="0" />
+        <RotationStyle angle="0" />
+        <ShadowStyle>
+          <Box enable="false" />
+          <Text enable="false" />
+        </ShadowStyle>
+      </style>
+      <userID>Button_6</userID>
+    </button>
+    <rich-text id="5c8ea343-03ab-46b8-9029-4114525498eb" auto-fit="false" hidden="false" locked="false" lockType="none" onTop="false" visible="true">
+      <text>
+تعداد هتل‌های سامانه : ۲۰ 
+تعداد کاربران ثبت نامی : ۵۸۶۴۲
+
+
+پنج هتل برتر از نظر مشتریان:
+۱.هتل کوثر
+۲. هتل آریان
+۳. هتل شایان
+۴. هتل استقلال
+۵. هتل طرشت</text>
+      <style name="LnFRichText">
+        <DimensionStyle width="214" height="246" />
+        <PositioningStyle left="17" top="119" />
+        <BackgroundStyle type="transparent" />
+        <BorderStyle radius="0" leftColor="0r0g0b" topColor="0r0g0b" rightColor="0r0g0b" bottomColor="0r0g0b" leftStyle="none" topStyle="none" rightStyle="none" bottomStyle="none" leftWidth="1" topWidth="1" rightWidth="1" bottomWidth="1" />
+        <TextStyle color="51r51g51b" hAlign="right" vAlign="left" decoration="none" line-height="20" />
+        <FontStyle size="14" height="21">
+          <family>Arial</family>
+          <style name="Regular" weight="400" italic="normal" />
+        </FontStyle>
+        <TransparencyStyle value="0" />
+        <PaddingStyle top="0" left="0" bottom="0" right="0" />
+        <RotationStyle angle="0" />
+        <ShadowStyle>
+          <Box enable="false" />
+          <Text enable="false" />
+        </ShadowStyle>
+      </style>
+      <rich-text-range-list>
+        <text-range text-range-start="0" text-range-end="1">
+          <style name="LnFTextRange">
+            <FontStyle size="14" height="21">
+              <family>Arial</family>
+              <style name="Regular" weight="400" italic="normal" />
+            </FontStyle>
+            <TextStyle color="51r51g51b" hAlign="right" vAlign="left" decoration="none" line-height="20" />
+          </style>
+        </text-range>
+        <text-range text-range-start="1" text-range-end="153">
+          <style name="LnFTextRange">
+            <FontStyle size="14" height="0">
+              <family>Arial</family>
+              <style name="Regular" weight="400" italic="normal" />
+            </FontStyle>
+            <TextStyle color="51r51g51b" hAlign="left" vAlign="center" decoration="none" line-height="0" />
+          </style>
+        </text-range>
+      </rich-text-range-list>
+      <userID>Rich_text_1</userID>
+    </rich-text>
+    <button id="79e6c8bc-5dea-4409-90df-91f492afc9b6" auto-fit="false" hidden="false" locked="false" lockType="none" onTop="false" visible="true">
+      <text>رزرو هتل</text>
+      <style name="LnFButton">
+        <DimensionStyle width="68" height="29" />
+        <PositioningStyle left="151" top="19" />
+        <BackgroundStyle type="gradient">
+          <gradient firstColor="255r255g255b" secondColor="230r230g230b" orientation="vertical" double="false" />
+        </BackgroundStyle>
+        <BorderStyle radius="30" leftColor="205r205g205b" topColor="205r205g205b" rightColor="205r205g205b" bottomColor="205r205g205b" leftStyle="solid" topStyle="solid" rightStyle="solid" bottomStyle="solid" leftWidth="1" topWidth="1" rightWidth="1" bottomWidth="1" />
+        <TextStyle color="3r3g3b" hAlign="center" vAlign="center" decoration="none" line-height="0" />
+        <FontStyle size="11" height="16">
+          <family>Arial</family>
+          <style name="Regular" weight="400" italic="normal" />
+        </FontStyle>
+        <TransparencyStyle value="0" />
+        <PaddingStyle top="0" left="0" bottom="0" right="0" />
+        <RotationStyle angle="0" />
+        <ShadowStyle>
+          <Box enable="false" />
+          <Text enable="false" />
+        </ShadowStyle>
+      </style>
+      <userID>Button_7</userID>
+    </button>
+    <button id="c20bd97e-8a78-486e-b3b4-9ce1327965ed" auto-fit="false" hidden="false" locked="false" lockType="none" onTop="false" visible="true">
+      <text>ثبت نام هتل</text>
+      <style name="LnFButton">
+        <DimensionStyle width="68" height="29" />
+        <PositioningStyle left="75" top="19" />
+        <BackgroundStyle type="gradient">
+          <gradient firstColor="255r255g255b" secondColor="230r230g230b" orientation="vertical" double="false" />
+        </BackgroundStyle>
+        <BorderStyle radius="30" leftColor="205r205g205b" topColor="205r205g205b" rightColor="205r205g205b" bottomColor="205r205g205b" leftStyle="solid" topStyle="solid" rightStyle="solid" bottomStyle="solid" leftWidth="1" topWidth="1" rightWidth="1" bottomWidth="1" />
+        <TextStyle color="3r3g3b" hAlign="center" vAlign="center" decoration="none" line-height="0" />
+        <FontStyle size="11" height="16">
+          <family>Arial</family>
+          <style name="Regular" weight="400" italic="normal" />
+        </FontStyle>
+        <TransparencyStyle value="0" />
+        <PaddingStyle top="0" left="0" bottom="0" right="0" />
+        <RotationStyle angle="0" />
+        <ShadowStyle>
+          <Box enable="false" />
+          <Text enable="false" />
+        </ShadowStyle>
+      </style>
+      <userID>Button_8</userID>
+    </button>
+    <style name="LnFCanvas">
+      <DimensionStyle width="770" height="536" />
+      <PositioningStyle left="0" top="0" />
+      <BackgroundStyle type="transparent" />
+      <TransparencyStyle value="0" />
+    </style>
+  </item-group>
+  <Events>
+    <event id="4974bd36-6961-46b0-b130-8ce64acaabc0" trigger="onClick">
+      <case>
+        <description>Interaction name</description>
+        <block>
+          <navigateLink>
+            <screen id="4996b801-7e98-4e10-bbe7-39bd890e5da4">login</screen>
+          </navigateLink>
+        </block>
+      </case>
+    </event>
+  </Events>
+</screen>
+
