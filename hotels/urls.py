@@ -15,7 +15,6 @@ urlpatterns = patterns(
     url(r'^search/$', HotelSearchView.as_view(), name='hotel_search'),
     url(r'^(?P<pk>\d+)/', include(hotel_patterns)),
     url(r'^view/$', (lambda: None), name='hotel_view'),
-    url(r'^search/$', (lambda: None), name='hotel_search'),
     url(r'^roomClass/$', (lambda: None), name='hotel_room_class_edit'),
     url(r'^new/$', (lambda: None), name='hotel_new'),
     url(r'^approve/$', (lambda: None), name='hotel_approve'),
