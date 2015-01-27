@@ -21,10 +21,14 @@ class ReservationOrder(models.Model):
 
 
 class Vote(models.Model):
+    class Meta:
+        ordering = ['releaseDate',]
+
     user = models.ForeignKey('auth.User')
-    reservation_order = models.ForeignKey('reservation.ReservationOrder')
+    reservation_order = models.OneToOneField('reservation.ReservationOrder')
     stars = models.SmallIntegerField(choices=Hotel.CHOICES_STARS)
     comment = models.TextField(blank=True)
+    releaseDate = models.DateTimeField(auto_now_add=True)
 
 
 class Payment(models.Model):

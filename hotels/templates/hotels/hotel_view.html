@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-1">
+
+            </div>
+            <div class="col-md-10">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><span class="label label-primary">{{ object.name }}</span></h3>
+                    </div>
+                    <div class="panel-body">
+                        <ul>
+                            {{ object.id }}
+                        </ul>
+                        <ul>
+                            {{ object.address }}
+                        </ul>
+                        <ul>
+                            {% for roomClass in object.roomclass_set.all %}
+                                {{ roomClass.name }}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1">
+                {% for vote in object.vote_set.all %}
+                    {{ vote.comment }}
+                    {{ vote.start }}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

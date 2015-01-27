@@ -1,6 +1,6 @@
 from django.core.urlresolvers import reverse_lazy
 from django.db import models
-
+import datetime
 
 class Hotel(models.Model):
     CHOICES_STARS = [(i, u'%d Stars' % i) for i in range(1, 6)]
@@ -13,6 +13,19 @@ class Hotel(models.Model):
     address = models.TextField(blank=True)
     is_approved = models.BooleanField(default=False)
     features = models.ManyToManyField('hotels.Feature')
+
+    def vote_set(self):
+        #stars = []
+        #comments = []
+        #for room_class in self.roomclass_set.all():
+        #    for reservation_order in room_class.reservationorder_set.all():
+        #        stars.append(reservation_order.vote.stars)
+
+        from reservation.models import Vote
+        #for vote in Vote.objects.filter(reservation_order__hotel=self):
+            #stars.append(vote.stars)
+            #comments.append(vote.comment)
+        return Vote.objects.filter(reservation_order__hotel=self)
 
     def __unicode__(self):
         return self.name
@@ -50,4 +63,3 @@ class Feature(models.Model):
 
     def __unicode__(self):
         return self.name
-
