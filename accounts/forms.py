@@ -6,8 +6,7 @@ from models import UserProfile
 from django.contrib.auth.models import User
 
 class UserForm(forms.ModelForm):
-    password = forms.CharField(widget=forms.PasswordInput(), label=u'رمز عبور')
-
+    password = forms.CharField(widget=forms.PasswordInput(), label=u'گذرواژه')
     class Meta:
         model = User
         fields = ('username', 'email', 'password')
@@ -30,7 +29,7 @@ class UserProfileEditForm(forms.ModelForm):
         model = UserProfile
         exclude = ('user', 'activation_key', 'key_expires', )
 
-    new_password = forms.CharField(widget=forms.PasswordInput, required=False, label=u'گذرواژه‌ی جدید', help_text=u'اگر نیاز به تغییر رمز ندارید، این قسمت را خالی بگذارید')
+    new_password = forms.CharField(widget=forms.PasswordInput, required=False, label=u'گذرواژه‌ی جدید', help_text=u'اگر نیاز به تغییر گذرواژه ندارید، این قسمت را خالی بگذارید')
 
     def save(self, *args, **kwargs):
         u = self.instance.user
