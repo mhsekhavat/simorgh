@@ -6,8 +6,8 @@
         <div class="row">
             <div class="col-md-12">
                 جستجو بر اساس موقعیت
-                <form method="post">
-                    {% csrf_token %}
+                <form action="{% url "hotel_list" %}" method="get">
+{#                    {% csrf_token %}#}
                     {% bootstrap_form location_form %}
                     {% bootstrap_button 'ثبت' %}
                 </form>
@@ -16,8 +16,8 @@
         <div class="row">
             <div class="col-md-12">
                 جستجو بر اساس نام شهر
-                <form method="post">
-                    {% csrf_token %}
+                <form action="{% url "hotel_list" %}" method="get">
+{#                    {% csrf_token %}#}
                     {% bootstrap_form name_form %}
                     {% bootstrap_button 'ثبت' %}
                 </form>
@@ -26,8 +26,8 @@
         <div class="row">
             <div class="col-md-12">
                 جستجو بر اساس رای کاربران
-                <form method="post">
-                    {% csrf_token %}
+                <form action="{% url "hotel_list" %}" method="get">
+{#                    {% csrf_token %}#}
                     {% bootstrap_form vote_form %}
                     {% bootstrap_button 'ثبت' %}
                 </form>

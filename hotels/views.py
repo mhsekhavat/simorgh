@@ -8,9 +8,15 @@ from hotels.form import SearchByLocationForm, SearchByNameForm, SearchByVoteForm
 from hotels.models import Hotel
 
 
-class HotelList(ListView):
-    model = Hotel
-    template_name = 'hotels/hotel_list.html'
+def hotels_list(request):
+    nameString = request.GET.get('name', '');
+    locationString = request.GET.get('location', '');
+    votesValue = request.GET.get('votes', -1);
+    context = {
+        'object_list': Hotel.objects.filter(name__contains=nameString, city__contains=locationString,
+                                            stars__gt=votesValue)
+    }
+    return render_to_response('hotels/hotel_list.html', context)
 
 class HotelUpdate(UpdateView):
     model = Hotel
@@ -19,6 +25,7 @@ class HotelUpdate(UpdateView):
 class HotelView(DetailView):
     model = Hotel
     template_name = 'hotels/hotel_view.html'
+
 
 class HotelSearchView(TemplateView):
     template_name = 'hotels/hotel_search.html'
@@ -32,3 +39,4 @@ class HotelSearchView(TemplateView):
 
     def post(self, request):
         return render_to_response()
+
