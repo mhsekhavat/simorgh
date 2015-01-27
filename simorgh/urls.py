@@ -2,7 +2,6 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from django.views.generic.base import TemplateView
 import hotels.urls, accounts.urls, reservation.urls, reports.urls
-from hotels.views import HotelsList
 
 urlpatterns = patterns(
     '',
@@ -10,7 +9,7 @@ urlpatterns = patterns(
     # url(r'^$', 'simorgh.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
 
-    url(r'^$', TemplateView.as_view(template_name='home.html')),
+    url(r'^$', TemplateView.as_view(template_name='home.html'), name='homepage'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^hotels/', include(hotels.urls)),
     url(r'^accounts/', include(accounts.urls)),

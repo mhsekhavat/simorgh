@@ -8,7 +8,7 @@ from hotels.form import SearchByLocationForm, SearchByNameForm, SearchByVoteForm
 from hotels.models import Hotel
 
 
-class HotelsList(ListView):
+class HotelList(ListView):
     model = Hotel
     template_name = 'hotels/hotel_list.html'
 

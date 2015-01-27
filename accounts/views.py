@@ -1,15 +1,18 @@
 # -*- coding: utf-8 -*-
 from django.contrib.auth.decorators import login_required
+from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import render, render_to_response
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.template.context import RequestContext
-from accounts.forms import UserForm, UserProfileForm
+from django.views.generic.edit import UpdateView
+from accounts.forms import UserForm, UserProfileForm, UserProfileEditForm
 from accounts.models import UserProfile
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.utils import timezone
 from django.shortcuts import get_object_or_404
+from django.contrib import messages
 import hashlib, datetime, random
 
 
@@ -115,3 +118,27 @@ def register_confirm(request, activation_key):
     user.save()
     messages.info(request, u'حساب کاربری شما فعال گردید')
     return HttpResponseRedirect('/')
+
+class AccountsEdit(UpdateView):
+    template_name = 'accounts/accounts_edit.html'
+    model = UserProfile
+    form_class = UserProfileEditForm
+    changed_password = False
+    def get_object(self, queryset=None):
+        user_profile,created = UserProfile.objects.get_or_create(user=self.request.user);
+        return user_profile
+
+    def form_valid(self, form):
+        if form.has_changed_password():
+            self.changed_password = True
+            messages.success(self.request, u'رمز عبور شما با موفقیت تغییر کرد. لطفا دوباره وارد شوید')
+        else:
+            messages.success(self.request, u'حساب کاربری شما با موفقیت به روزرسانی شد')
+        return super(AccountsEdit, self).form_valid(form)
+
+    def get_success_url(self):
+        if( self.changed_password ):
+            return '/'
+        else:
+            return reverse_lazy('accounts_edit')
+

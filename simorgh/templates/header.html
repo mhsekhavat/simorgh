@@ -9,6 +9,11 @@
         </div>
         <div class="nav navbar-nav">
             {% if user.is_authenticated %}
+                 <li class="active">
+                    <a href="{% url 'accounts_edit' %}">
+ویرایش حساب کاربری
+                    </a>
+                </li>
                 <li class="active">
                     <a href="{% url 'logout' %}">
                         خروج
