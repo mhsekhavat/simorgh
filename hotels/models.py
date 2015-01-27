@@ -1,18 +1,19 @@
+# -*- coding: utf-8 -*-
 from django.core.urlresolvers import reverse_lazy
 from django.db import models
 import datetime
 
 class Hotel(models.Model):
     CHOICES_STARS = [(i, u'%d Stars' % i) for i in range(1, 6)]
-    name = models.CharField(max_length=32)
-    city = models.CharField(max_length=56, blank=True)
+    name = models.CharField(max_length=32, verbose_name=u'نام')
+    city = models.CharField(max_length=56, blank=True, verbose_name=u'شهر')
     owner = models.ForeignKey('auth.User')
-    server_url = models.URLField(blank=True)
-    room_count = models.PositiveIntegerField()
-    stars = models.SmallIntegerField(choices=CHOICES_STARS)
-    address = models.TextField(blank=True)
-    is_approved = models.BooleanField(default=False)
-    features = models.ManyToManyField('hotels.Feature', blank=True)
+    server_url = models.URLField(blank=True, verbose_name=u'آدرس اینترنتی کارگذار هتل')
+    room_count = models.PositiveIntegerField(verbose_name=u'تعداد اتاق‌')
+    stars = models.SmallIntegerField(choices=CHOICES_STARS, verbose_name=u'ستاره')
+    address = models.TextField(blank=True, verbose_name=u'آدرس')
+    is_approved = models.BooleanField(default=False, verbose_name=u'تاییدیه‌ی مدیر')
+    features = models.ManyToManyField('hotels.Feature', blank=True, verbose_name=u'ویژگی‌ها')
 
     def vote_set(self):
         #stars = []
@@ -35,31 +36,31 @@ class Hotel(models.Model):
 
 
 class RoomClass(models.Model):
-    hotel = models.ForeignKey('hotels.Hotel')
-    name = models.CharField(max_length=32)
-    description = models.TextField()
-    price = models.PositiveIntegerField()
-    bed_count = models.PositiveIntegerField()
-    features = models.ManyToManyField('hotels.Feature')
+    hotel = models.ForeignKey('hotels.Hotel', verbose_name=u'هتل')
+    name = models.CharField(max_length=32, verbose_name=u'نام')
+    description = models.TextField(verbose_name=u'توضیح')
+    price = models.PositiveIntegerField(verbose_name=u'قیمت')
+    bed_count = models.PositiveIntegerField(verbose_name=u'تعداد تخت‌خواب')
+    features = models.ManyToManyField('hotels.Feature', verbose_name=u'ویژگی‌ها')
 
     def __unicode__(self):
         return self.name
 
 
 class HotelImage(models.Model):
-    hotel = models.ForeignKey('hotels.Hotel')
-    caption = models.TextField(blank=True)
-    image = models.ImageField()
+    hotel = models.ForeignKey('hotels.Hotel', verbose_name=u'هتل')
+    caption = models.TextField(blank=True, verbose_name=u'زیرنویس عکس')
+    image = models.ImageField(verbose_name=u'عکس')
 
     def __unicode__(self):
         return self.caption
 
 
 class Feature(models.Model):
-    name = models.CharField(max_length=128)
-    icon = models.ImageField()
-    is_for_hotel = models.BooleanField(default=True)
-    is_for_room = models.BooleanField(default=True)
+    name = models.CharField(max_length=128, verbose_name=u'نام')
+    icon = models.ImageField(verbose_name=u'عکس')
+    is_for_hotel = models.BooleanField(default=True, verbose_name=u'برای هتل')
+    is_for_room = models.BooleanField(default=True, verbose_name=u'برای اتاق')
 
     def __unicode__(self):
         return self.name

@@ -12,25 +12,25 @@ class ReservationOrder(models.Model):
         (STATUS_PAID, 'پرداخت شده'),
         (STATUS_EXPIRED, 'منقضی'),
     )
-    room_class = models.ForeignKey('hotels.RoomClass')
-    start_date = models.DateField()
-    end_date = models.DateField()
-    price = models.PositiveIntegerField()
-    room_count = models.PositiveIntegerField()
-    status = models.CharField(max_length=32, choices=CHOICES_STATUS)
+    room_class = models.ForeignKey('hotels.RoomClass', verbose_name=u'رده‌بندی اتاق')
+    start_date = models.DateField(verbose_name=u'تاریخ شروع')
+    end_date = models.DateField(verbose_name=u'تاریخ پایان')
+    price = models.PositiveIntegerField(verbose_name=u'قیمت')
+    room_count = models.PositiveIntegerField(verbose_name=u'تعداد اتاق')
+    status = models.CharField(max_length=32, choices=CHOICES_STATUS, verbose_name=u'وضعیت پرداخت')
 
 
 class Vote(models.Model):
     class Meta:
         ordering = ['releaseDate',]
 
-    user = models.ForeignKey('auth.User')
-    reservation_order = models.OneToOneField('reservation.ReservationOrder')
-    stars = models.SmallIntegerField(choices=Hotel.CHOICES_STARS)
-    comment = models.TextField(blank=True)
-    releaseDate = models.DateTimeField(auto_now_add=True)
+    user = models.ForeignKey('auth.User', verbose_name=u'کاربر')
+    reservation_order = models.OneToOneField('reservation.ReservationOrder', verbose_name=u'رسید پرداخت')
+    stars = models.SmallIntegerField(choices=Hotel.CHOICES_STARS, verbose_name=u'ستاره')
+    comment = models.TextField(blank=True, verbose_name=u'نظر')
+    releaseDate = models.DateTimeField(auto_now_add=True, verbose_name=u'تاریخ انتشار')
 
 
 class Payment(models.Model):
-    followup_code = models.CharField(max_length=255)
-    status = models.CharField(max_length=32, choices=ReservationOrder.CHOICES_STATUS)
+    followup_code = models.CharField(max_length=255, verbose_name=u'کد پیگیری')
+    status = models.CharField(max_length=32, choices=ReservationOrder.CHOICES_STATUS, verbose_name=u'وضعیت پرداخت')
