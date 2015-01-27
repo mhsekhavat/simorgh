@@ -8,10 +8,15 @@
             </a>
         </div>
         <div class="nav navbar-nav">
+            <li class="active">
+                <a href="{% url 'hotel_search' %}">
+                    جستجوی هتل
+                </a>
+            </li>
             {% if user.is_authenticated %}
-                 <li class="active">
+                <li class="active">
                     <a href="{% url 'accounts_edit' %}">
-ویرایش حساب کاربری
+                        ویرایش حساب کاربری
                     </a>
                 </li>
                 <li class="active">
