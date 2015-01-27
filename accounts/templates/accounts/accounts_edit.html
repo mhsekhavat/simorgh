@@ -2,23 +2,30 @@
 {% load bootstrap3 %}
 
 {% block content %}
-    <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-8">
-            <form action="" method="post" class="form">
-                {% csrf_token %}
-                {% bootstrap_form form %}
-                {% buttons %}
-                    <button type="submit" class="btn btn-primary">
-                        {% bootstrap_icon "star" %}
-                    ارسال
-                    </button>
-                {% endbuttons %}
-                <a href = "{% url 'homepage' %}" >
-                    انصراف
-                </a>
-            </form>
+    <div class="panel">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <form action="" method="post" class="form">
+                        {% csrf_token %}
+                        {% bootstrap_form form %}
+                        {% buttons %}
+                            <button type="submit" class="btn btn-primary">
+                                {% bootstrap_icon "star" %}
+                                ارسال
+                            </button>
+{#                            <button class="btn btn-primary">#}
+                                <a href="{% url 'homepage' %}" class="btn btn-danger">
+                                    انصراف
+                                </a>
+{#                            </button>#}
+                        {% endbuttons %}
+
+                    </form>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
         </div>
-        <div class="col-md-2"></div>
     </div>
 {% endblock %}
