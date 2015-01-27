@@ -26,7 +26,7 @@ class Hotel(models.Model):
         #for vote in Vote.objects.filter(reservation_order__hotel=self):
             #stars.append(vote.stars)
             #comments.append(vote.comment)
-        return Vote.objects.filter(reservation_order__hotel=self)
+        return Vote.objects.filter(reservation_order__room_class__hotel=self)
 
     def __unicode__(self):
         return self.name
