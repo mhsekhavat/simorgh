@@ -4,7 +4,7 @@ from django.views.generic.base import TemplateView
 from django.views.generic.edit import UpdateView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
-from hotels.form import SearchByLocationForm, SearchByNameForm
+from hotels.form import SearchByLocationForm, SearchByNameForm, SearchByVoteForm
 from hotels.models import Hotel
 
 
@@ -26,7 +26,8 @@ class HotelSearchView(TemplateView):
     def get_context_data(self, **kwargs):
         return {
             'location_form': SearchByLocationForm(),
-            'name_form': SearchByNameForm()
+            'name_form': SearchByNameForm(),
+            'vote_form': SearchByVoteForm()
         }
 
     def post(self, request):

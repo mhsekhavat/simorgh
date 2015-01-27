@@ -13,6 +13,6 @@ class SearchByNameForm(Form):
     name = CharField(label=u'نام هتل')
 
 
-class SearchByVote(Form):
+class SearchByVoteForm(Form):
     name = CharField(label=u'رای کاربران')
 
