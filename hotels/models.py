@@ -12,7 +12,7 @@ class Hotel(models.Model):
     stars = models.SmallIntegerField(choices=CHOICES_STARS)
     address = models.TextField(blank=True)
     is_approved = models.BooleanField(default=False)
-    features = models.ManyToManyField('hotels.Feature')
+    features = models.ManyToManyField('hotels.Feature', blank=True)
 
     def vote_set(self):
         #stars = []

@@ -1,11 +1,14 @@
+# -*- coding: utf-8 -*-
+from django.core.urlresolvers import reverse_lazy
 from django.http.response import HttpResponse
 from django.shortcuts import render, render_to_response
 from django.views.generic.base import TemplateView
-from django.views.generic.edit import UpdateView
+from django.views.generic.edit import UpdateView, FormView, CreateView, ModelFormMixin
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
-from hotels.form import SearchByLocationForm, SearchByNameForm, SearchByVoteForm
+from hotels.form import SearchByLocationForm, SearchByNameForm, SearchByVoteForm, RegisterHotelForm, UpdateHotelForm
 from hotels.models import Hotel
+from django.contrib import messages
 
 
 def hotels_list(request):
@@ -18,7 +21,9 @@ def hotels_list(request):
     }
     return render_to_response('hotels/hotel_list.html', context)
 
+
 class HotelUpdate(UpdateView):
+    form_class = UpdateHotelForm
     model = Hotel
 
 
@@ -39,4 +44,20 @@ class HotelSearchView(TemplateView):
 
     def post(self, request):
         return render_to_response()
+
+
+class HotelRegisterView(CreateView):
+    model = Hotel
+    template_name = 'hotels/hotel_register.html'
+    form_class = RegisterHotelForm
+    success_url = reverse_lazy('homepage')
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.owner = self.request.user
+        self.object.save()
+        messages.success(self.request, u'هتل جدید با موفقیت ثبت شد، منتظر تایید مدیر سیستم باشید')
+        return super(ModelFormMixin, self).form_valid(form)
+
+
 

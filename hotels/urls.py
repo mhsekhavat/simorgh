@@ -3,7 +3,7 @@ from django.views.generic.edit import UpdateView
 from django.views.generic.list import ListView
 from django.views.generic.detail import BaseDetailView
 from hotels.models import Hotel
-from hotels.views import HotelSearchView, HotelUpdate, HotelView, hotels_list
+from hotels.views import HotelSearchView, HotelUpdate, HotelView, hotels_list, HotelRegisterView
 
 hotel_patterns = patterns(
     '',
@@ -17,6 +17,6 @@ urlpatterns = patterns(
     url(r'^search/$', HotelSearchView.as_view(), name='hotel_search'),
     url(r'^(?P<pk>\d+)/', include(hotel_patterns)),
     url(r'^roomClass/$', (lambda: None), name='hotel_room_class_edit'),
-    url(r'^new/$', (lambda: None), name='hotel_new'),
+    url(r'^new/$', HotelRegisterView.as_view(), name='hotel_new'),
     url(r'^approve/$', (lambda: None), name='hotel_approve'),
 )
