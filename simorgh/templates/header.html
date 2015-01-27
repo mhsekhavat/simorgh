@@ -4,39 +4,56 @@
     <div class="container">
         <div class="navbar-header">
             <a class="navbar-brand" href="{% url 'homepage' %}">
+                <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
                 سامانه سیمرغ
             </a>
         </div>
         <div class="nav navbar-nav">
             <li class="active">
                 <a href="{% url 'hotel_search' %}">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                     جستجوی هتل
                 </a>
             </li>
             {% if user.is_authenticated %}
                 <li class="active">
                     <a href="{% url 'accounts_edit' %}">
+                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+
                         ویرایش حساب کاربری
                     </a>
                 </li>
                 <li class="active">
                     <a href="{% url 'logout' %}">
+                        <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
+
                         خروج
                     </a>
                 </li>
             {% else %}
                 <li class="active">
                     <a href="{% url 'login' %}">
+                        <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>
+
                         ورود
                     </a>
                 </li>
                 <li class="active">
                     <a href="{% url 'register' %}">
+                        <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
                         ثبت نام
                     </a>
                 </li>
 
             {% endif %}
+            <li class="active ">
+                <a href="{% url 'hotel_new' %}">
+                    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+
+                    ثبت هتل جدید
+                </a>
+            </li>
+
         </div>
         <!--/.navbar-collapse -->
     </div>
