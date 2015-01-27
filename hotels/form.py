@@ -21,7 +21,7 @@ class SearchByVoteForm(Form):
 class UpdateHotelForm(forms.ModelForm):
     class Meta:
         model = Hotel
-        exclude = ('is_approved', )
+        exclude = ('is_approved', 'owner')
 
 
 class RegisterHotelForm(forms.ModelForm):
