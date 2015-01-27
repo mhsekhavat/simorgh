@@ -2,7 +2,6 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from django.views.generic.base import TemplateView
 import hotels.urls, accounts.urls, reservation.urls, reports.urls
-from hotels.views import HotelsList
 
 urlpatterns = patterns(
     '',

@@ -6,7 +6,7 @@ __author__ = 'REAL'
 
 
 class SearchByLocationForm(Form):
-    name = CharField(label=u'نام شهر/استان')
+    location = CharField(label=u'نام شهر/استان')
 
 
 class SearchByNameForm(Form):
@@ -14,5 +14,5 @@ class SearchByNameForm(Form):
 
 
 class SearchByVoteForm(Form):
-    name = CharField(label=u'رای کاربران')
+    votes = CharField(label=u'رای کاربران')
 
