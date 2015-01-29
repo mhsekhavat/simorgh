@@ -38,5 +38,5 @@ nosetests.xml
 .project
 .pydevproject
 /.idea/
-
+/media/
 /db.sqlite3

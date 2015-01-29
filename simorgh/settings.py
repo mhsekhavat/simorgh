@@ -88,7 +88,6 @@ USE_TZ = True
 
 SITE_ID = 1
 
-
 EMAIL_HOST = 'smtp.gmail.com'
 
 EMAIL_HOST_USER = 'technical.presenters@gmail.com'
@@ -117,3 +116,6 @@ THUMBNAIL_ALIASES = {
         'avatar': {'size': (50, 50), 'crop': True},
     },
 }
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

@@ -10,8 +10,8 @@
                 {% csrf_token %}
                 {% bootstrap_form form %}
                 {% for hotelImage in hotel.hotelimage_set.all %}
-                    <img src="{{ hotelImage.image }}"/>
-{#                    <img src="{{ hotelImage.image|thumbnail_url:'avatar' }}" alt="{{ hotelImage.caption }}"/>#}
+
+                    <img src="{{ hotelImage.image|thumbnail_url:'avatar' }}" alt="{{ hotelImage.caption }}"/>
                 {% endfor %}
                 {% buttons %}
                     <a href="{% url 'hotel_add_image' pk=hotel.id %}" class="btn btn-default">
