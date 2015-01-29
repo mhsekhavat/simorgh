@@ -45,6 +45,7 @@ INSTALLED_APPS = (
     'reports',
     'hotels',
     'accounts',
+    'easy_thumbnails',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -110,3 +111,9 @@ TEMPLATE_DIRS = (
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'simorgh/static'),
 )
+
+THUMBNAIL_ALIASES = {
+    '': {
+        'avatar': {'size': (50, 50), 'crop': True},
+    },
+}

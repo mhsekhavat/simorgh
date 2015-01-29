@@ -6,9 +6,10 @@ from django.views.generic.base import TemplateView
 from django.views.generic.edit import UpdateView, FormView, CreateView, ModelFormMixin
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
-from hotels.form import SearchByLocationForm, SearchByNameForm, SearchByVoteForm, RegisterHotelForm, UpdateHotelForm
-from hotels.models import Hotel
+from hotels.form import SearchByLocationForm, SearchByNameForm, SearchByVoteForm, RegisterHotelForm, UpdateHotelForm, HotelAddImageForm
+from hotels.models import Hotel, HotelImage
 from django.contrib import messages
+from django.shortcuts import redirect
 
 
 def hotels_list(request):
@@ -25,7 +26,21 @@ def hotels_list(request):
 class HotelUpdate(UpdateView):
     form_class = UpdateHotelForm
     model = Hotel
+    template_name = 'hotels/hotel_edit.html'
 
+class HotelAddImageView(CreateView):
+    form_class = HotelAddImageForm
+    model = HotelImage
+    template_name = 'hotels/hotel_add_image.html'
+    #success_url = reverse_lazy('hotel_update')
+
+    def form_valid(self, form):
+        object = form.save(commit=False)
+        object.hotel_id = self.kwargs['pk']
+        object.save()
+        messages.success(self.request, u'عکس با موفقیت اضافه شد.')
+        return redirect(reverse_lazy('hotel_edit', kwargs=self.kwargs))
+        #return super(ModelFormMixin, self).form_valid(form)
 
 class HotelView(DetailView):
     model = Hotel

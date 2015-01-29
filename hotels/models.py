@@ -2,6 +2,8 @@
 from django.core.urlresolvers import reverse_lazy
 from django.db import models
 import datetime
+from werkzeug.exceptions import LengthRequired
+
 
 class Hotel(models.Model):
     CHOICES_STARS = [(i, u'%d Stars' % i) for i in range(1, 6)]
@@ -50,7 +52,7 @@ class RoomClass(models.Model):
 class HotelImage(models.Model):
     hotel = models.ForeignKey('hotels.Hotel', verbose_name=u'هتل')
     caption = models.TextField(blank=True, verbose_name=u'زیرنویس عکس')
-    image = models.ImageField(verbose_name=u'عکس')
+    image = models.ImageField(upload_to = 'images/', verbose_name=u'عکس')
 
     def __unicode__(self):
         return self.caption
