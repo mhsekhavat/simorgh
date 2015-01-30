@@ -1,13 +1,43 @@
 {% extends 'base.html' %}
+{% load bootstrap3 %}
 {% block content %}
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                گزارش گیری به تفکیک هتل‌ها
-                <form action="{% url "hotel_list" %}" method="get">
+                گزارش کلی درآمد سامانه
+                <form action="{% url "reports_simorgh_incomes_by_hotels" %}" method="get">
                     {#                    {% csrf_token %}#}
-                    {% bootstrap_form %}
-                    {% bootstrap_form location_form %}
+                    {% bootstrap_form hotels_incomes %}
+                    {% bootstrap_button 'ثبت' %}
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                گزارش گیری به تفکیک هتل‌ها
+                <form action="{% url "reports_simorgh_incomes_by_hotels" %}" method="get">
+                    {#                    {% csrf_token %}#}
+                    {% bootstrap_form hotels_incomes %}
+                    {% bootstrap_button 'ثبت' %}
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                گزارش به تفکیک رده اتاق‌ها
+                <form action="{% url "reports_simorgh_incomes_by_hotels" %}" method="get">
+                    {#                    {% csrf_token %}#}
+                    {% bootstrap_form hotels_incomes %}
+                    {% bootstrap_button 'ثبت' %}
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                گزارش ریز پرداخت‌ها
+                <form action="{% url "reports_simorgh_incomes_by_hotels" %}" method="get">
+                    {#                    {% csrf_token %}#}
+                    {% bootstrap_form hotels_incomes %}
                     {% bootstrap_button 'ثبت' %}
                 </form>
             </div>
