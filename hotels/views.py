@@ -3,7 +3,7 @@ from django.core.urlresolvers import reverse_lazy
 from django.http.response import HttpResponse
 from django.shortcuts import render, render_to_response
 from django.views.generic.base import TemplateView
-from django.views.generic.edit import UpdateView, FormView, CreateView, ModelFormMixin
+from django.views.generic.edit import UpdateView, FormView, CreateView, ModelFormMixin, DeleteView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from hotels.form import SearchByLocationForm, SearchByNameForm, SearchByVoteForm, RegisterHotelForm, UpdateHotelForm, HotelAddImageForm
@@ -40,7 +40,16 @@ class HotelAddImageView(CreateView):
         object.save()
         messages.success(self.request, u'عکس با موفقیت اضافه شد.')
         return redirect(reverse_lazy('hotel_edit', kwargs=self.kwargs))
-        #return super(ModelFormMixin, self).form_valid(form)
+
+class HotelRemoveImage(DeleteView):
+    model = HotelImage
+
+    def get_success_url(self):
+        return reverse_lazy('hotel_edit', kwargs={'pk':self.kwargs['pk']})
+
+    def get_object(self, queryset=None):
+        messages.info(self.request, u'عکس با موفقیت حذف شد')
+        return HotelImage.objects.get(pk=self.kwargs['images_pk'])
 
 class HotelView(DetailView):
     model = Hotel
