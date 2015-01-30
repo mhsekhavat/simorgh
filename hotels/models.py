@@ -2,9 +2,11 @@
 from django.core.urlresolvers import reverse_lazy
 from django.db import models
 import datetime
+from werkzeug.exceptions import LengthRequired
+
 
 class Hotel(models.Model):
-    CHOICES_STARS = [(i, u'%d Stars' % i) for i in range(1, 6)]
+    CHOICES_STARS = [(i, i*u'*') for i in range(1, 6)]
     name = models.CharField(max_length=32, verbose_name=u'نام')
     city = models.CharField(max_length=56, blank=True, verbose_name=u'شهر')
     owner = models.ForeignKey('auth.User')
@@ -32,7 +34,7 @@ class Hotel(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse_lazy('hotel_edit', kwargs={'pk': self.id})
+        return reverse_lazy('hotel_view', kwargs={'pk': self.id})
 
 
 class RoomClass(models.Model):
@@ -50,7 +52,7 @@ class RoomClass(models.Model):
 class HotelImage(models.Model):
     hotel = models.ForeignKey('hotels.Hotel', verbose_name=u'هتل')
     caption = models.TextField(blank=True, verbose_name=u'زیرنویس عکس')
-    image = models.ImageField(verbose_name=u'عکس')
+    image = models.ImageField(upload_to = 'images/', verbose_name=u'عکس')
 
     def __unicode__(self):
         return self.caption

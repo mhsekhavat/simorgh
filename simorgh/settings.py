@@ -45,6 +45,7 @@ INSTALLED_APPS = (
     'reports',
     'hotels',
     'accounts',
+    'easy_thumbnails',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -87,7 +88,6 @@ USE_TZ = True
 
 SITE_ID = 1
 
-
 EMAIL_HOST = 'smtp.gmail.com'
 
 EMAIL_HOST_USER = 'technical.presenters@gmail.com'
@@ -110,3 +110,12 @@ TEMPLATE_DIRS = (
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'simorgh/static'),
 )
+
+THUMBNAIL_ALIASES = {
+    '': {
+        'avatar': {'size': (50, 50), 'crop': True},
+    },
+}
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

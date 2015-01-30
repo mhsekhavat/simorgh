@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+{% load thumbnail %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <form action="" method="post" class="form">
+                {% csrf_token %}
+                {% bootstrap_form form %}
+                {% for hotelImage in hotel.hotelimage_set.all %}
+
+                    <img src="{{ hotelImage.image|thumbnail_url:'avatar' }}" alt="{{ hotelImage.caption }}"/>
+                {% endfor %}
+                {% buttons %}
+                    <a href="{% url 'hotel_add_image' pk=hotel.id %}" class="btn btn-default">
+                        <span class="glyphicon glyphicon-upload" aria-hidden="true"/>
+                        افزدون عکس
+                    </a>
+                {% endbuttons %}
+
+                {% buttons %}
+                    <button type="submit" class="btn btn-primary">
+                        {% bootstrap_icon "star" %}
+                        ارسال
+                    </button>
+                    <a href="{% url 'homepage' %}" class="btn btn-danger">
+                        انصراف
+                    </a>
+                {% endbuttons %}
+            </form>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+{% endblock %}
