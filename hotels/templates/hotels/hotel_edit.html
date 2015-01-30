@@ -9,43 +9,49 @@
             <form action="" method="post" class="form">
                 {% csrf_token %}
                 {% bootstrap_form form %}
-                <div class="row">
+                <div class="panel panel-default">
+                    <div class="row">
 
-                    {% for hotelImage in hotel.hotelimage_set.all %}
+                        {% for hotelImage in hotel.hotelimage_set.all %}
 
-                        <div class="col-sm-6 col-md-4">
-                            <div class="thumbnail">
-                                <img src="{{ hotelImage.image|thumbnail_url:'avatar' }}"
-                                     alt="{{ hotelImage.caption }}">
+                            <div class="col-sm-6 col-md-4">
+                                <div class="thumbnail">
+                                    <img src="{{ hotelImage.image|thumbnail_url:'avatar' }}"
+                                         alt="{{ hotelImage.caption }}">
 
-                                <div class="caption">
-                                    <h3>{{ hotelImage.caption }}</h3>
-                                    <p>
+                                    <div class="caption">
+                                        <h3>{{ hotelImage.caption }}</h3>
 
-                                    <form method="POST"
-                                          action="{% url 'hotel_remove_image' pk=hotel.id images_pk=hotelImage.id %}">
-                                        {% csrf_token %}
-                                        {% buttons %}
-                                            <button type="submit" class="btn btn-danger">
-                                                <span class="glyphicon glyphicon-minus-sign" aria-hidden="true"/>
-                                                حذف
-                                            </button>
-                                        {% endbuttons %}
-                                    </form>
-                                    </p>
+                                        <p>
+
+                                        <form method="POST"
+                                              action="{% url 'hotel_remove_image' pk=hotel.id images_pk=hotelImage.id %}">
+                                            {% csrf_token %}
+                                            {% buttons %}
+                                                <button type="submit" class="btn btn-danger">
+                                                        <span class="glyphicon glyphicon-minus-sign"
+                                                              aria-hidden="true"/>
+                                                    حذف
+                                                </button>
+                                            {% endbuttons %}
+                                        </form>
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
 
-                    {% endfor %}
+                        {% endfor %}
+                    </div>
+                    <div class="panel-footer">
+                        {% buttons %}
+                            <a href="{% url 'hotel_add_image' pk=hotel.id %}" class="btn btn-success bt-lg">
+                                <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"/>
+                                افزدون عکس
+                            </a>
+                        {% endbuttons %}
+                    </div>
                 </div>
-                {% buttons %}
-                    <a href="{% url 'hotel_add_image' pk=hotel.id %}" class="btn btn-success bt-lg">
-                        <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"/>
-                        افزدون عکس
-                    </a>
-                {% endbuttons %}
 
                 {% buttons %}
                     <button type="submit" class="btn btn-primary">
