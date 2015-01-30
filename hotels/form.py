@@ -4,7 +4,6 @@ from django.forms.fields import CharField
 from hotels.models import Hotel, HotelImage
 from django import forms
 
-__author__ = 'REAL'
 
 
 class SearchByLocationForm(Form):
