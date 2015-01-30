@@ -1,13 +1,28 @@
 /* Move down content because we have a fixed navbar that is 50px tall */
+@font-face {
+  font-family: 'BYekan';
+  src: url(../fonts/BYekan.eot);
+  src: url('../fonts/BYekan.ttf') format('truetype'), url('../fonts/BYekan.woff') format('woff');
+}
+@font-face {
+  font-family: 'BKoodakBold';
+  src: url(../fonts/BKoodakBold.eot);
+  src: url('../fonts/BKoodakBold.ttf') format('truetype'), url('../fonts/BKoodakBold.woff') format('woff');
+}
+@font-face {
+  font-family: 'BHoma';
+  src: url(../fonts/BHoma.eot);
+  src: url('../fonts/BHoma.ttf') format('truetype'), url('../fonts/BHoma.woff') format('woff');
+}
 body {
   padding-top: 50px;
   padding-bottom: 20px;
 }
 .navbar-brand {
-  font-family: "B Koodak";
+  font-family: "BKoodakBold";
 }
 nav {
-  font-family: "b yekan";
+  font-family: "BYekan";
 }
 .login-form {
   padding-top: 50px;
