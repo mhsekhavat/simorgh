@@ -3,12 +3,13 @@ from django.views.generic.edit import UpdateView
 from django.views.generic.list import ListView
 from django.views.generic.detail import BaseDetailView
 from hotels.models import Hotel
-from hotels.views import HotelSearchView, HotelUpdate, HotelView, hotels_list, HotelRegisterView, HotelAddImageView
+from hotels.views import HotelSearchView, HotelUpdate, HotelView, hotels_list, HotelRegisterView, HotelAddImageView, HotelRemoveImage
 
 hotel_patterns = patterns(
     '',
     url(r'^update/$', HotelUpdate.as_view(), name='hotel_edit'),
     url(r'^update/addImage$', HotelAddImageView.as_view(), name='hotel_add_image'),
+    url(r'^update/removeImage/(?P<images_pk>\d+)/$', HotelRemoveImage.as_view(), name='hotel_remove_image'),
     url(r'^view/$', HotelView.as_view(), name='hotel_view'),
 )
 

@@ -2,35 +2,79 @@
 {% load bootstrap3 %}
 
 {% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                جستجو بر اساس موقعیت
-                <form action="{% url "hotel_list" %}" method="get">
-{#                    {% csrf_token %}#}
-                    {% bootstrap_form location_form %}
-                    {% bootstrap_button 'ثبت' %}
-                </form>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                جستجو بر اساس نام شهر
-                <form action="{% url "hotel_list" %}" method="get">
-{#                    {% csrf_token %}#}
-                    {% bootstrap_form name_form %}
-                    {% bootstrap_button 'ثبت' %}
-                </form>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                جستجو بر اساس رای کاربران
-                <form action="{% url "hotel_list" %}" method="get">
-{#                    {% csrf_token %}#}
-                    {% bootstrap_form vote_form %}
-                    {% bootstrap_button 'ثبت' %}
-                </form>
+    <div class="panel">
+
+        <div class="panel-body panel-success">
+            <div class="container">
+                <div class="panel panel-info">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel-heading panel-info">
+                                <div class="panel-title">
+                                    جستجو بر اساس موقعیت
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <form action="{% url "hotel_list" %}" method="get">
+                                    {#                                                        {% csrf_token %}#}
+                                    {% bootstrap_form location_form %}
+                                    {% buttons %}
+                                        <button type="submit" class="btn btn-primary">
+                                            <span class="glyphicon glyphicon-search" aria-hidden="true"/>
+                                            جستجو
+                                        </button>
+                                    {% endbuttons %}
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-info">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel-heading panel-info">
+                                <div class="panel-title">
+جستجو بر اساس نام هتل
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <form action="{% url "hotel_list" %}" method="get">
+                                    {#                                                        {% csrf_token %}#}
+                                    {% bootstrap_form name_form %}
+                                    {% buttons %}
+                                        <button type="submit" class="btn btn-primary">
+                                            <span class="glyphicon glyphicon-search" aria-hidden="true"/>
+                                            جستجو
+                                        </button>
+                                    {% endbuttons %}
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-info">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel-heading panel-info">
+                                <div class="panel-title">
+                                    جستجو بر اساس رای کاربران
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <form action="{% url "hotel_list" %}" method="get">
+                                    {#                    {% csrf_token %}#}
+                                    {% bootstrap_form vote_form %}
+                                    {% buttons %}
+                                        <button type="submit" class="btn btn-primary">
+                                            <span class="glyphicon glyphicon-search" aria-hidden="true"/>
+                                            جستجو
+                                        </button>
+                                    {% endbuttons %}
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
