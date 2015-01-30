@@ -3,6 +3,12 @@ body {
   padding-top: 50px;
   padding-bottom: 20px;
 }
+.navbar-brand {
+  font-family: "B Koodak";
+}
+nav {
+  font-family: "b yekan";
+}
 .login-form {
   padding-top: 50px;
 }
