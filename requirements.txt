@@ -3,6 +3,7 @@ Pillow==2.7.0
 Werkzeug==0.9.6
 django-bootstrap3==5.0.3
 django-extensions==1.4.9
+easy-thumbnails==2.2
 factory-boy==2.4.1
 model-mommy==1.2.2
 six==1.7.3
