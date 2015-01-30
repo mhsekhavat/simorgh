@@ -43,7 +43,7 @@ class RoomClass(models.Model):
     description = models.TextField(verbose_name=u'توضیح')
     price = models.PositiveIntegerField(verbose_name=u'قیمت')
     bed_count = models.PositiveIntegerField(verbose_name=u'تعداد تخت‌خواب')
-    features = models.ManyToManyField('hotels.Feature', verbose_name=u'ویژگی‌ها')
+    features = models.ManyToManyField('hotels.Feature', blank=True, verbose_name=u'ویژگی‌ها')
 
     def __unicode__(self):
         return self.name

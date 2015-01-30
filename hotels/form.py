@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.forms.forms import Form
 from django.forms.fields import CharField
-from hotels.models import Hotel, HotelImage
+from hotels.models import Hotel, HotelImage, RoomClass
 from django import forms
 
 
@@ -36,6 +36,17 @@ class HotelAddImageForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(HotelAddImageForm, self).__init__(*args, **kwargs) # Call to ModelForm constructor
         self.fields['caption'].widget.attrs['rows'] = 1
+
+
+class HotelAddRoomClass(forms.ModelForm):
+    class Meta:
+        model = RoomClass
+        exclude = ('hotel', )
+
+    def __init__(self, *args, **kwargs):
+        super(HotelAddRoomClass, self).__init__(*args, **kwargs) # Call to ModelForm constructor
+        self.fields['description'].widget.attrs['rows'] = 1
+
 
 
 class RegisterHotelForm(forms.ModelForm):

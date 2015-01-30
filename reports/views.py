@@ -4,7 +4,7 @@ from django.shortcuts import render, render_to_response
 
 # Create your views here.
 from django.views.generic.base import TemplateView
-from mercurial.commands import status
+#from mercurial.commands import status
 from hotels.models import Hotel
 from reports.form import DateSelectForm
 from reservation.models import ReservationOrder
