@@ -12,6 +12,7 @@ class ReservationOrder(models.Model):
         (STATUS_PAID, 'پرداخت شده'),
         (STATUS_EXPIRED, 'منقضی'),
     )
+    user = models.ForeignKey('auth.User', verbose_name=u'کاربر')
     room_class = models.ForeignKey('hotels.RoomClass', verbose_name=u'رده‌بندی اتاق')
     start_date = models.DateField(verbose_name=u'تاریخ شروع')
     end_date = models.DateField(verbose_name=u'تاریخ پایان')
@@ -24,7 +25,6 @@ class Vote(models.Model):
     class Meta:
         ordering = ['releaseDate',]
 
-    user = models.ForeignKey('auth.User', verbose_name=u'کاربر')
     reservation_order = models.OneToOneField('reservation.ReservationOrder', verbose_name=u'رسید پرداخت')
     stars = models.SmallIntegerField(choices=Hotel.CHOICES_STARS, verbose_name=u'ستاره')
     comment = models.TextField(blank=True, verbose_name=u'نظر')

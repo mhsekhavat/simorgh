@@ -6,7 +6,7 @@ from werkzeug.exceptions import LengthRequired
 
 
 class Hotel(models.Model):
-    CHOICES_STARS = [(i, u'%d Stars' % i) for i in range(1, 6)]
+    CHOICES_STARS = [(i, i*u'*') for i in range(1, 6)]
     name = models.CharField(max_length=32, verbose_name=u'نام')
     city = models.CharField(max_length=56, blank=True, verbose_name=u'شهر')
     owner = models.ForeignKey('auth.User')
@@ -34,7 +34,7 @@ class Hotel(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse_lazy('hotel_edit', kwargs={'pk': self.id})
+        return reverse_lazy('hotel_view', kwargs={'pk': self.id})
 
 
 class RoomClass(models.Model):

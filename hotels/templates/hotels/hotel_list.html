@@ -3,8 +3,7 @@
     <ul>
     {% for hotel in object_list %}
         <li>
-            {{ hotel }}
-            ( <a href="{{ hotel.get_absolute_url }}"> edit </a> )
+            ( <a href="{{ hotel.get_absolute_url }}"> {{ hotel }} </a> )
         </li>
     {% endfor %}
     </ul>
