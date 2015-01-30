@@ -1,13 +1,16 @@
 # -*- coding: utf-8 -*-
+from itertools import cycle
 import random
 from traceback import print_tb, print_exception
 import datetime
+import traceback
 from django.conf import settings
 from django.core.management import call_command
 import os
 from django.db import transaction
+from mercurial.commands import status
 from hotels.models import Hotel, RoomClass, Feature
-from reservation.models import ReservationOrder
+from reservation.models import ReservationOrder, Payment, Vote
 
 
 @transaction.atomic()
@@ -46,8 +49,8 @@ def gen():
 
     hotels = mommy.make_many(
         Hotel,
-        2,
-        name=iter([u'هتل پارسیان', u'هتل هما', ]),
+        4,
+        name=iter([u'هتل پارسیان', u'هتل هما', u'هتل استقلال', u'هتل امیرکبیر']),
         owner=iter(users),
     )
 
@@ -86,6 +89,7 @@ def gen():
 
     r1 = mommy.make_one(
         ReservationOrder,
+        user=users[0],
         room_class=room_classes[0],
         start_date=datetime.datetime(2012, 4, 7),
         end_date=datetime.datetime(2012, 4, 10),
@@ -96,7 +100,8 @@ def gen():
 
     r2 = mommy.make_one(
         ReservationOrder,
-        room_class=room_classes[1],
+        user=users[2],
+        room_class=room_classes[7],
         start_date=datetime.datetime(2012, 8, 10),
         end_date=datetime.datetime(2012, 9, 10),
         price=2500000,
@@ -105,7 +110,8 @@ def gen():
     )
     r3 = mommy.make_one(
         ReservationOrder,
-        room_class=room_classes[2],
+        user=users[1],
+        room_class=room_classes[9],
         start_date=datetime.datetime(2012, 11, 1),
         end_date=datetime.datetime(2013, 12, 2),
         price=3500000,
@@ -115,7 +121,8 @@ def gen():
 
     r4 = mommy.make_one(
         ReservationOrder,
-        room_class=room_classes[1],
+        user=users[3],
+        room_class=room_classes[11],
         start_date=datetime.datetime(2012, 1, 1),
         end_date=datetime.datetime(2013, 5, 2),
         price=360000,
@@ -125,7 +132,8 @@ def gen():
 
     r5 = mommy.make_one(
         ReservationOrder,
-        room_class=room_classes[3],
+        user=users[4],
+        room_class=room_classes[5],
         start_date=datetime.datetime(2012, 1, 1),
         end_date=datetime.datetime(2012, 5, 2),
         price=500000,
@@ -135,15 +143,29 @@ def gen():
 
     r6 = mommy.make_one(
         ReservationOrder,
-        room_class=room_classes[2],
+        room_class=room_classes[3],
+        user=users[3],
         start_date=datetime.datetime(2011, 1, 1),
         end_date=datetime.datetime(2012, 5, 2),
         price=1500000,
         room_count=4,
-        status=ReservationOrder.STATUS_EXPIRED
+        status=ReservationOrder.STATUS_PAID
     )
 
-    p1
+    peymants = mommy.make_many(
+        Payment,
+        10,
+        status=cycle(iter(ReservationOrder.CHOICES_STATUS))
+    )
+
+    votes = mommy.make_many(
+        Vote,
+        6,
+        reservation_order= iter([r1, r2, r3, r4, r5, r6]),
+        stars= cycle(iter([1, 2, 2, 2, 3, 4, 5])),
+        release_date=cycle(iter([datetime.datetime(2012, 2, 6), datetime.datetime(2013, 5, 7), datetime.datetime(2012, 11, 20), datetime.datetime(2010, 7, 26)]))
+    )
+
     os.chdir(cwd)
 
 
@@ -154,3 +176,5 @@ def run():
         gen()
     except OSError:
         pass
+    except Exception:
+        traceback.print_exc()

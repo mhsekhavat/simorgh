@@ -23,12 +23,12 @@ class ReservationOrder(models.Model):
 
 class Vote(models.Model):
     class Meta:
-        ordering = ['releaseDate',]
+        ordering = ['release_date',]
 
     reservation_order = models.OneToOneField('reservation.ReservationOrder', verbose_name=u'رسید پرداخت')
     stars = models.SmallIntegerField(choices=Hotel.CHOICES_STARS, verbose_name=u'ستاره')
     comment = models.TextField(blank=True, verbose_name=u'نظر')
-    releaseDate = models.DateTimeField(auto_now_add=True, verbose_name=u'تاریخ انتشار')
+    release_date = models.DateTimeField(auto_now_add=True, verbose_name=u'تاریخ انتشار')
 
 
 class Payment(models.Model):
