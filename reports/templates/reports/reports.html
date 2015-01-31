@@ -25,7 +25,7 @@
         <div class="row">
             <div class="col-md-12">
                 گزارش به تفکیک رده اتاق‌ها
-                <form action="{% url "reports_simorgh_incomes_by_hotels" %}" method="get">
+                <form action="{% url "reports_hotel_rooms_incomes" %}" method="get">
                     {#                    {% csrf_token %}#}
                     {% bootstrap_form select_date %}
                     {% bootstrap_button 'ثبت' %}
@@ -35,7 +35,7 @@
         <div class="row">
             <div class="col-md-12">
                 گزارش ریز پرداخت‌ها
-                <form action="{% url "reports_simorgh_incomes_by_hotels" %}" method="get">
+                <form action="{% url "reports_hotel_detailed_incomes" %}" method="get">
                     {#                    {% csrf_token %}#}
                     {% bootstrap_form select_date %}
                     {% bootstrap_button 'ثبت' %}

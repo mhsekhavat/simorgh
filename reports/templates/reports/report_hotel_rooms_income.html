@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
     <ul>
-        {% for data in months %}
+        {% for data in rooms %}
             <li>
-                {{ data.date }}
+                {{ data.room }}
                 {{ data.income }}
             </li>
         {% endfor %}

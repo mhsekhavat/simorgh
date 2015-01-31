@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, include, url
-from reports.views import incomes_by_hotels, ReportsView, total_incomes
+from reports.views import incomes_by_hotels, ReportsView, total_incomes, detailed_incomes, incomes_by_hotel_rooms
 
 
 urlpatterns = patterns(
