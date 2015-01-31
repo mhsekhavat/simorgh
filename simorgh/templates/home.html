@@ -3,61 +3,98 @@
 {% block content %}
     <div class="jumbotron">
         <div class="container">
-            <h1>Hello, world!</h1>
+            <div class="row">
 
-            <p>This is a template for a simple marketing or informational website. It includes a large callout called a
-                jumbotron and three supporting pieces of content. Use it as a starting point to create something more
-                unique.</p>
+                <div class="row-md-12">
+                    <h1>
+                        سامانه‌ی جامع رزرواسیون هتل سیمرغ
+                    </h1>
+                </div>
+            </div>
 
-            <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+            <div class="row">
+                <div class="row-md-12">
+                    <p>
+                        به راحتی هتل دلخواه خود را در هرکجای ایران رزرو کنید و با آرامش خاطر سفر کنید
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                    </ol>
+
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner " role="listbox">
+                        <div class="item active ">
+                            <img src="{{ STATIC_URL|add:'images/1.jpg' }}" id="aks1">
+                        </div>
+                        <div class="item">
+                            <img src="{{ STATIC_URL|add:'images/2.jpg' }}" id="aks2">
+                        </div>
+                        <div class="item">
+                            <img src="{{ STATIC_URL|add:'images/3.jpg' }}" id="aks3">
+                        </div>
+                    </div>
+
+                    <!-- Controls -->
+                    <a class="left carousel-control" href="#carousel-example-generic" role="button"
+                       data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#carousel-example-generic" role="button"
+                       data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 
     <div class="container">
-    <div class="row">
-        <div class="col-md-8">
-            salam
-        </div>
-        <div class="col-md-1">
-
-        </div>
-        <div class="2">
-            hi
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4">
-            c1
-        </div>
-        <div class="col-md-4 text-center">
-            c2
-        </div>
-        <div class="col-md-4">
-            <div class="panel panel-info">
-                <div class="panel-heading">
-                    <div class="panel-title">
-                        salam
+        <div class="row">
+            <div class="col-md-4">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <div class="panel-title">
+                            آمار سایت
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <td>
+                                    تعداد کاربران تا این لحظه
+                                </td>
+                                <td>
+                                    تعداد هتل‌ها تا این لحظه
+                                </td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>a</td>
+                                <td>b</td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-                <div class="panel-body">
-                    <table class="table table-bordered">
-                        <thead>
-                        <tr>
-                            <td>h1</td>
-                            <td>h2</td>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>a</td>
-                            <td>b</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
+            </div>
+            <div class="col-md-4">
+
+            </div>
+            <div class="col-md-4 text-left">
+                <img src={{ STATIC_URL|add:'images/namad1.png' }}/>
+
             </div>
         </div>
-
-    </div>
     </div>
 {% endblock %}
