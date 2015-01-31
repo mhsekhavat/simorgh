@@ -1,22 +1,25 @@
+from StdSuites.AppleScript_Suite import months
+from dateutil.relativedelta import relativedelta
+from dateutil.rrule import rrule, MONTHLY
 from django.shortcuts import render, render_to_response
-
+import datetime
 
 
 # Create your views here.
 from django.views.generic.base import TemplateView
-from mercurial.commands import status
+#from mercurial.commands import status
 from hotels.models import Hotel
 from reports.form import DateSelectForm
 from reservation.models import ReservationOrder
 
 
 def incomes_by_hotels(request):
-    hotel_incomes_start_date = request.GET.get('hotel_incomes_start_date', '1900-1-1')
-    hotel_incomes_end_date = request.GET.get('hotel_incomes_end_date', '2100-1-1')
+    incomes_start_date = request.GET.get('incomes_start_date', '1900-1-1')
+    incomes_end_date = request.GET.get('incomes_end_date', '2100-1-1')
     hotel_incomes = {}
     reservation_orders = ReservationOrder.objects.filter(status=ReservationOrder.STATUS_PAID,
-                                                         start_date__gte=hotel_incomes_start_date,
-                                                         end_date__lte=hotel_incomes_end_date)
+                                                         start_date__gte=incomes_start_date,
+                                                         end_date__lte=incomes_end_date)
     for reservation_order in reservation_orders:
         hotel = reservation_order.room_class.hotel
         hotel_incomes.setdefault(hotel, 0)
@@ -36,17 +39,12 @@ def incomes_by_hotels(request):
     return render_to_response('reports/report_hotels_income.html', context)
 
 def incomes_by_hotels(request):
-    #hotel_incomes_start_date = request.GET.get('hotel_incomes_start_date', '1900-1-1')
-    #hotel_incomes_end_date = request.GET.get('hotel_incomes_end_date', '2100-1-1')
-    form = DateSelectForm(data=request.GET)
-    if form.is_valid():
-        hotel_incomes_start_date = form.cleaned_data.get('hotel_incomes_start_date', None)
-        hotel_incomes_end_date = form.cleaned_data.get('hotel_incomes_end_date', None)
-
+    incomes_start_date = request.GET.get('incomes_start_date', '1900-1-1')
+    incomes_end_date = request.GET.get('incomes_end_date', '2100-1-1')
     hotel_incomes = {}
     reservation_orders = ReservationOrder.objects.filter(status=ReservationOrder.STATUS_PAID,
-                                                         start_date__gte=hotel_incomes_start_date,
-                                                         end_date__lte=hotel_incomes_end_date)
+                                                         start_date__gte=incomes_start_date,
+                                                         end_date__lte=incomes_end_date)
     for reservation_order in reservation_orders:
         hotel = reservation_order.room_class.hotel
         hotel_incomes.setdefault(hotel, 0)
@@ -64,6 +62,40 @@ def incomes_by_hotels(request):
     }
 
     return render_to_response('reports/report_hotels_income.html', context)
+
+
+def total_incomes(request):
+    form = DateSelectForm(data=request.GET)
+    if form.is_valid():
+        incomes_start_date = form.cleaned_data.get('incomes_start_date', None)
+        incomes_end_date = form.cleaned_data.get('incomes_end_date', None)
+
+    monthly_incomes = {}
+    reservation_orders = ReservationOrder.objects.filter(status=ReservationOrder.STATUS_PAID,
+                                                         start_date__gte=incomes_start_date,
+                                                         end_date__lte=incomes_end_date)
+
+
+
+
+    for dt in rrule(MONTHLY, dtstart=incomes_start_date, until=incomes_end_date):
+        for reservation_order in reservation_orders:
+            if dt.date() < reservation_order.start_date and (dt+relativedelta(months=1) ).date() > reservation_order.start_date:
+                monthly_incomes.setdefault(dt.strftime('%Y-%m'), 0)
+                monthly_incomes[dt.strftime('%Y-%m')]+=reservation_order.price
+
+    months = []
+    for dt in rrule(MONTHLY, dtstart=incomes_start_date, until=incomes_end_date):
+        months.append({
+            'date': dt.strftime('%Y-%m'),
+            'income': monthly_incomes.get(dt.strftime('%Y-%m'), 0),
+        })
+
+    context = {
+        'months': months
+    }
+
+    return render_to_response('reports/report_total_income.html', context)
 
 
 
@@ -75,10 +107,7 @@ class ReportsView(TemplateView):
         # hotel_incomes_start_date=self.request.GET.get('hotel_incomes_start_date','1900-1-1')
         # hotel_incomes_end_date=self.request.GET.get('hotel_incomes_end_date','2100-1-1')
         return {
-            'hotels_incomes': DateSelectForm(),
-            'total_incomes' : DateSelectForm(),
-            'hotel_rooms_incomes' : DateSelectForm(),
-            'hotel_detailed_incomes' : DateSelectForm(),
+            'select_date': DateSelectForm(),
         }
 
 
