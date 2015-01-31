@@ -27,6 +27,16 @@ class UpdateHotelForm(forms.ModelForm):
         super(UpdateHotelForm, self).__init__(*args, **kwargs) # Call to ModelForm constructor
         self.fields['address'].widget.attrs['rows'] = 3
 
+class UpdateRoomClassForm(forms.ModelForm):
+    class Meta:
+        model = RoomClass
+        exclude = ('hotel', )
+
+    #def __init__(self, *args, **kwargs):
+    #    super(UpdateRoomClassForm, self).__init__(*args, **kwargs) # Call to ModelForm constructor
+    #    self.fields['description'].widget.attrs['rows'] = 3
+
+
 
 class HotelAddImageForm(forms.ModelForm):
     class Meta:
