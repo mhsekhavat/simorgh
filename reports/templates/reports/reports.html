@@ -5,9 +5,9 @@
         <div class="row">
             <div class="col-md-12">
                 گزارش کلی درآمد سامانه
-                <form action="{% url "reports_simorgh_incomes_by_hotels" %}" method="get">
+                <form action="{% url "reports_simorgh_total_incomes" %}" method="get">
                     {#                    {% csrf_token %}#}
-                    {% bootstrap_form hotels_incomes %}
+                    {% bootstrap_form select_date %}
                     {% bootstrap_button 'ثبت' %}
                 </form>
             </div>
@@ -17,7 +17,7 @@
                 گزارش گیری به تفکیک هتل‌ها
                 <form action="{% url "reports_simorgh_incomes_by_hotels" %}" method="get">
                     {#                    {% csrf_token %}#}
-                    {% bootstrap_form hotels_incomes %}
+                    {% bootstrap_form select_date %}
                     {% bootstrap_button 'ثبت' %}
                 </form>
             </div>
@@ -27,7 +27,7 @@
                 گزارش به تفکیک رده اتاق‌ها
                 <form action="{% url "reports_simorgh_incomes_by_hotels" %}" method="get">
                     {#                    {% csrf_token %}#}
-                    {% bootstrap_form hotels_incomes %}
+                    {% bootstrap_form select_date %}
                     {% bootstrap_button 'ثبت' %}
                 </form>
             </div>
@@ -37,7 +37,7 @@
                 گزارش ریز پرداخت‌ها
                 <form action="{% url "reports_simorgh_incomes_by_hotels" %}" method="get">
                     {#                    {% csrf_token %}#}
-                    {% bootstrap_form hotels_incomes %}
+                    {% bootstrap_form select_date %}
                     {% bootstrap_button 'ثبت' %}
                 </form>
             </div>
