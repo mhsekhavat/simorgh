@@ -8,7 +8,6 @@ from django.conf import settings
 from django.core.management import call_command
 import os
 from django.db import transaction
-from mercurial.commands import status
 from hotels.models import Hotel, RoomClass, Feature
 from reservation.models import ReservationOrder, Payment, Vote
 
