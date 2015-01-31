@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+    <ul>
+        {% for data in months %}
+            <li>
+                {{ data.date }}
+                {{ data.income }}
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+
+
