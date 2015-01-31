@@ -8,6 +8,10 @@
             $('<form method="post" action="' + url + '"><input name="csrfmiddlewaretoken" value="{{ csrf_token }}"></form>').
                     appendTo(document.body).submit();
         }
+        function deleteRoomClass(url) {
+            $('<form method="post" action="' + url + '"><input name="csrfmiddlewaretoken" value="{{ csrf_token }}"></form>').
+                    appendTo(document.body).submit();
+        }
     </script>
     <div class="row">
         <div class="col-md-2"></div>
@@ -54,6 +58,69 @@
                             <a href="{% url 'hotel_add_image' pk=hotel.id %}" class="btn btn-success bt-lg">
                                 <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"/>
                                 افزدون عکس
+                            </a>
+                        {% endbuttons %}
+                    </div>
+                </div>
+
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="panel-title">
+                            کلاس‌های اتاق
+                        </div>
+                    </div>
+                    <div class="panel-body">
+
+                        <div class="row">
+                            <div class="col-md-3">
+                                نام
+                            </div>
+                            <div class="col-md-3">
+                                قیمت
+                            </div>
+                            <div class="col-md-3">
+                                تعداد تخت‌خواب
+                            </div>
+                        </div>
+
+                        {% for roomClass in hotel.roomclass_set.all %}
+                            <div class="row">
+                                <div class="col-md-3">
+                                    {{ roomClass.name }}
+                                </div>
+                                <div class="col-md-3">
+                                    {{ roomClass.price }}
+                                </div>
+                                <div class="col-md-2">
+                                    {{ roomClass.bed_count }}
+                                </div>
+                                <div class="col-md-4">
+                                    <a href="{% url 'hotel_edit_room_class' pk=hotel.id room_class_pk=roomClass.id %}"
+                                       class="btn btn-info" role="button">
+                                        <span class="glyphicon glyphicon-edit" aria-hidden="true"/>
+
+                                        ویرایش
+                                    </a>
+                                    <a onclick="deleteRoomClass('{% url 'hotel_delete_room_class' pk=hotel.id room_class_pk=roomClass.id %}')"
+                                       class="btn btn-danger" role="button">
+                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"/>
+
+                                        حذف
+                                    </a>
+                                </div>
+                            </div>
+                            <p>
+
+                            </p>
+                        {% endfor %}
+
+                    </div>
+                    <div class="panel-footer">
+                        {% buttons %}
+                            <a href="{% url 'hotel_add_room_class' pk=hotel.id %}" class="btn btn-success bt-lg">
+                                <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"/>
+                                افزودن کلاس اتاق
                             </a>
                         {% endbuttons %}
                     </div>

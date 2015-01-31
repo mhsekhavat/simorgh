@@ -36,14 +36,13 @@ class Hotel(models.Model):
     def get_absolute_url(self):
         return reverse_lazy('hotel_view', kwargs={'pk': self.id})
 
-
 class RoomClass(models.Model):
     hotel = models.ForeignKey('hotels.Hotel', verbose_name=u'هتل')
     name = models.CharField(max_length=32, verbose_name=u'نام')
     description = models.TextField(verbose_name=u'توضیح')
     price = models.PositiveIntegerField(verbose_name=u'قیمت')
     bed_count = models.PositiveIntegerField(verbose_name=u'تعداد تخت‌خواب')
-    features = models.ManyToManyField('hotels.Feature', verbose_name=u'ویژگی‌ها')
+    features = models.ManyToManyField('hotels.Feature', blank=True, verbose_name=u'ویژگی‌ها')
 
     def __unicode__(self):
         return self.name
