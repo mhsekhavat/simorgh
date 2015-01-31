@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+    <ul>
+        {% for data in rooms %}
+            <li>
+                {{ data.room }}
+                {{ data.income }}
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+
+
