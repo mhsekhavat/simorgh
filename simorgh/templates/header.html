@@ -18,10 +18,18 @@
             <li class="active">
                 <a href="{% url 'hotel_list' %}">
                     <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-لیست هتل‌ها
+                    لیست هتل‌ها
                 </a>
             </li>
             {% if user.is_authenticated %}
+                {% if user.is_superuser and user.is_authenticated %}
+                    <li class="active">
+                        <a href="{% url 'hotel_list_admin' %}">
+                            <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+                            تایید یا رد هتل‌ها
+                        </a>
+                    </li>
+                {% endif %}
                 <li class="active">
                     <a href="{% url 'accounts_edit' %}">
                         <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>

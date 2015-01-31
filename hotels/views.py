@@ -23,6 +23,29 @@ def hotels_list(request):
     return render_to_response('hotels/hotel_list.html', context)
 
 
+class HotelListAdmin(ListView):
+    model = Hotel
+    template_name = 'hotels/hotel_list_admin.html'
+
+    def get_context_data(self, **kwargs):
+        return {'object_list': Hotel.objects.filter()}
+
+
+    def post(self, request, *args, **kwargs):
+        list_post = request.POST.getlist('toupdate')
+        hotels = Hotel.objects.filter()
+        for hotel in hotels :
+            if hotel.is_approved :
+                if list_post.count(str(hotel.id)) == 0 :
+                    hotel.is_approved=False
+                    hotel.save()
+            else:
+                if list_post.count(str(hotel.id)) != 0 :
+                    hotel.is_approved=True
+                    hotel.save()
+        return redirect(reverse_lazy('hotel_list_admin'))
+
+
 class HotelUpdate(UpdateView):
     form_class = UpdateHotelForm
     model = Hotel
@@ -66,6 +89,7 @@ class HotelAddRoomClass(CreateView):
         messages.success(self.request, u'کلاس اتاق با موفقیت اضافه شد')
         return redirect(reverse_lazy('hotel_edit', kwargs=self.kwargs))
 
+
 class HotelEditRoomClass(UpdateView):
     model = RoomClass
     form_class = UpdateRoomClassForm
@@ -77,6 +101,7 @@ class HotelEditRoomClass(UpdateView):
 
     def get_object(self, queryset=None):
         return RoomClass.objects.get(pk=self.kwargs['room_class_pk'])
+
 
 class HotelRemoveRoomClass(DeleteView):
     model = RoomClass

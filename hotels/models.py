@@ -36,7 +36,6 @@ class Hotel(models.Model):
     def get_absolute_url(self):
         return reverse_lazy('hotel_view', kwargs={'pk': self.id})
 
-
 class RoomClass(models.Model):
     hotel = models.ForeignKey('hotels.Hotel', verbose_name=u'هتل')
     name = models.CharField(max_length=32, verbose_name=u'نام')

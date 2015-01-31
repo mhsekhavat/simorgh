@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+
+
+{% block content %}
+    <div style="padding-top: 30px">
+        <div class="container">
+            <form method="post" action="{% url 'hotel_list_admin' %}">
+                {% csrf_token %}
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        لیست هتل‌ها
+                    </div>
+                    <table class="table">
+                        <p>
+
+                        </p>
+
+                        {% for hotel in object_list %}
+                            <div class="row">
+                                <div class="col-md-2 text-right">
+                                    تایید
+                                    <input type="checkbox" name="toupdate" value="{{ hotel.id }}"
+                                            {% if hotel.is_approved %}
+                                           checked
+                                            {% endif %}/>
+                                </div>
+                                <div class="col-md-3 text-info ">
+                                    {{ hotel.name }}
+                                </div>
+                                <div class="col-md-3 text-center">
+                                    {% buttons %}
+                                        <a href="{% url 'hotel_view' pk=hotel.id %}"
+                                           class="btn btn-success bt-lg">
+                                            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"/>
+                                            مشاهده‌ی جزییات
+                                        </a>
+                                    {% endbuttons %}
+                                </div>
+                                <div class="col-md-3 text-left">
+                                    {% buttons %}
+                                        <a href="{% url 'hotel_edit' pk=hotel.id %}"
+                                           class="btn btn-info bt-lg">
+                                            <span class="glyphicon glyphicon-edit" aria-hidden="true"/>
+                                            ویرایش
+                                        </a>
+                                    {% endbuttons %}
+                                </div>
+                                <div class="col-md-1">
+
+                                </div>
+                            </div>
+                        {% endfor %}
+
+                    </table>
+                </div>
+                {% buttons %}
+                    <button type="submit" class="btn btn-primary">
+                        {% bootstrap_icon "star" %}
+                        به روزرسانی تایید/رد هتل‌ها
+                    </button>
+                {% endbuttons %}
+            </form>
+        </div>
+    </div>
+{% endblock %}
