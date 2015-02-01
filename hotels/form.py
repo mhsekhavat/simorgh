@@ -80,3 +80,8 @@ class RegisterHotelForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(RegisterHotelForm, self).__init__(*args, **kwargs)  # Call to ModelForm constructor
         self.fields['address'].widget.attrs['rows'] = 3
+
+
+class StatusForm(forms.Form):
+    start_date = forms.DateField(label=u'از تاریخ')
+    end_date = forms.DateField(label=u'تا تاریخ')

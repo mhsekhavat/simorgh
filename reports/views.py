@@ -5,7 +5,7 @@ from django.shortcuts import render, render_to_response
 
 # Create your views here.
 from django.views.generic.base import TemplateView
-#from mercurial.commands import status
+# from mercurial.commands import status
 from hotels.models import Hotel, RoomClass
 from reports.form import DateSelectForm
 from reservation.models import ReservationOrder
@@ -48,14 +48,12 @@ def total_incomes(request):
                                                          start_date__gte=incomes_start_date,
                                                          end_date__lte=incomes_end_date)
 
-
-
-
     for dt in rrule(MONTHLY, dtstart=incomes_start_date, until=incomes_end_date):
         for reservation_order in reservation_orders:
-            if dt.date() < reservation_order.start_date and (dt+relativedelta(months=1) ).date() > reservation_order.start_date:
+            if dt.date() < reservation_order.start_date and (
+                        dt + relativedelta(months=1) ).date() > reservation_order.start_date:
                 monthly_incomes.setdefault(dt.strftime('%Y-%m'), 0)
-                monthly_incomes[dt.strftime('%Y-%m')]+=reservation_order.price
+                monthly_incomes[dt.strftime('%Y-%m')] += reservation_order.price
 
     months = []
     for dt in rrule(MONTHLY, dtstart=incomes_start_date, until=incomes_end_date):
@@ -79,19 +77,20 @@ def incomes_by_hotel_rooms(request):
                                                          start_date__gte=incomes_start_date,
                                                          end_date__lte=incomes_end_date)
     for reservation_order in reservation_orders:
-        if reservation_order.room_class.hotel.owner == request.user:
+        if reservation_order.room_class.hotel.owner.username == request.user.username:
             rooms_incomes.setdefault(reservation_order.room_class, 0)
             rooms_incomes[reservation_order.room_class] += reservation_order.price
 
     rooms = []
     for room in RoomClass.objects.all():
-        rooms.append({
-            'room': room,
-            'income': rooms_incomes.get(room, 0),
-        })
+        if rooms_incomes.get(room, 0) > 0:
+            rooms.append({
+                'room': room,
+                'income': rooms_incomes.get(room, 0),
+            })
 
     context = {
-        'hotels': rooms
+        'rooms': rooms
     }
 
     return render_to_response('reports/report_hotel_rooms_income.html', context)
@@ -100,30 +99,30 @@ def incomes_by_hotel_rooms(request):
 def detailed_incomes(request):
     incomes_start_date = request.GET.get('incomes_start_date', '1900-1-1')
     incomes_end_date = request.GET.get('incomes_end_date', '2100-1-1')
-    rooms_incomes = {}
-    reservation_orders = ReservationOrder.objects.filter(status=ReservationOrder.STATUS_PAID,
-                                                         start_date__gte=incomes_start_date,
+    reservation_detailed = {}
+    reservation_orders = ReservationOrder.objects.filter(start_date__gte=incomes_start_date,
                                                          end_date__lte=incomes_end_date)
     for reservation_order in reservation_orders:
-        if reservation_order.room_class.hotel.owner == request.user:
-            rooms_incomes.setdefault(reservation_order.room_class, 0)
-            rooms_incomes[reservation_order.room_class] += reservation_order.price
+        if reservation_order.room_class.hotel.owner.username == request.user.username:
+            reservation_detailed.setdefault(
+                    reservation_order.room_class.name + "  " + reservation_order.user.username + "  " + reservation_order.status + "  " + reservation_order.start_date.strftime(
+                        "%Y-%m-%d") + "  " + reservation_order.start_date.strftime("%Y-%m-%d"), 0)
+            reservation_detailed[
+                reservation_order.room_class.name + "  " + reservation_order.user.username + "  " + reservation_order.status + "  " + reservation_order.start_date.strftime(
+                    "%Y-%m-%d") + "  " + reservation_order.start_date.strftime("%Y-%m-%d")] += reservation_order.price
 
-    rooms = []
-    for room in RoomClass.objects.all():
-        rooms.append({
-            'room': room,
-            'income': rooms_incomes.get(room, 0),
-        })
+            orders = []
+            for reserve in reservation_detailed.keys():
+                orders.append({
+                    'order': reserve,
+                    'income': reservation_detailed.get(reserve, 0),
+                })
 
-    context = {
-        'hotels': rooms
-    }
+            context = {
+                'orders': orders
+            }
 
-    return render_to_response('reports/report_hotel_rooms_income.html', context)
-
-
-
+    return render_to_response('reports/report_hotel_detailed_income.html', context)
 
 
 class ReportsView(TemplateView):

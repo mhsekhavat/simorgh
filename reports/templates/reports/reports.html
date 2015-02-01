@@ -1,45 +1,99 @@
 {% extends 'base.html' %}
 {% load bootstrap3 %}
 {% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                گزارش کلی درآمد سامانه
-                <form action="{% url "reports_simorgh_total_incomes" %}" method="get">
-                    {#                    {% csrf_token %}#}
-                    {% bootstrap_form select_date %}
-                    {% bootstrap_button 'ثبت' %}
-                </form>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                گزارش گیری به تفکیک هتل‌ها
-                <form action="{% url "reports_simorgh_incomes_by_hotels" %}" method="get">
-                    {#                    {% csrf_token %}#}
-                    {% bootstrap_form select_date %}
-                    {% bootstrap_button 'ثبت' %}
-                </form>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                گزارش به تفکیک رده اتاق‌ها
-                <form action="{% url "reports_hotel_rooms_incomes" %}" method="get">
-                    {#                    {% csrf_token %}#}
-                    {% bootstrap_form select_date %}
-                    {% bootstrap_button 'ثبت' %}
-                </form>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                گزارش ریز پرداخت‌ها
-                <form action="{% url "reports_hotel_detailed_incomes" %}" method="get">
-                    {#                    {% csrf_token %}#}
-                    {% bootstrap_form select_date %}
-                    {% bootstrap_button 'ثبت' %}
-                </form>
+    <div class="panel">
+        <div class="panel-body panel-success">
+            <div class="container">
+                <div class="panel panel-info">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel-heading panel-info">
+                                <div class="panel-title">
+                                    گزارش کلی درآمد سامانه
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <form action="{% url "reports_simorgh_total_incomes" %}" method="get">
+                                    {#                                                        {% csrf_token %}#}
+                                    {% bootstrap_form select_date %}
+                                    {% buttons %}
+                                        <button type="submit" class="btn btn-primary">
+                                            <span class="glyphicon glyphicon-search" aria-hidden="true"/>
+                                            مشاهده گزارش
+                                        </button>
+                                    {% endbuttons %}
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel-heading panel-info">
+                                <div class="panel-title">
+گزارش به تفکیک هتل‌ها
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <form action="{% url "reports_simorgh_incomes_by_hotels" %}" method="get">
+                                    {#                                                        {% csrf_token %}#}
+                                    {% bootstrap_form select_date %}
+                                    {% buttons %}
+                                        <button type="submit" class="btn btn-primary">
+                                            <span class="glyphicon glyphicon-search" aria-hidden="true"/>
+                                            مشاهده گزارش
+                                        </button>
+                                    {% endbuttons %}
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel-heading panel-info">
+                                <div class="panel-title">
+                                    گزارش به تفکیک رده اتاق‌ها
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <form action="{% url "reports_simorgh_total_incomes" %}" method="get">
+                                    {#                                                        {% csrf_token %}#}
+                                    {% bootstrap_form select_date %}
+                                    {% buttons %}
+                                        <button type="submit" class="btn btn-primary">
+                                            <span class="glyphicon glyphicon-search" aria-hidden="true"/>
+                                            مشاهده گزارش
+                                        </button>
+                                    {% endbuttons %}
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel-heading panel-info">
+                                <div class="panel-title">
+                                    گزارش ریز پرداخت‌ها
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <form action="{% url "reports_simorgh_total_incomes" %}" method="get">
+                                    {#                                                        {% csrf_token %}#}
+                                    {% bootstrap_form select_date %}
+                                    {% buttons %}
+                                        <button type="submit" class="btn btn-primary">
+                                            <span class="glyphicon glyphicon-search" aria-hidden="true"/>
+                                            مشاهده گزارش
+                                        </button>
+                                    {% endbuttons %}
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -3,7 +3,7 @@ from django.views.generic.edit import UpdateView
 from django.views.generic.list import ListView
 from django.views.generic.detail import BaseDetailView
 from hotels.models import Hotel
-from hotels.views import HotelSearchView, HotelUpdate, HotelView, hotels_list, HotelRegisterView, HotelAddImageView, HotelRemoveImage, HotelAddRoomClass, HotelEditRoomClass, HotelRemoveRoomClass, HotelListAdmin, HotelList
+from hotels.views import HotelSearchView, HotelUpdate, HotelView, HotelRegisterView, HotelAddImageView, HotelRemoveImage, HotelAddRoomClass, HotelEditRoomClass, HotelRemoveRoomClass, HotelListAdmin, HotelList
 
 hotel_patterns = patterns(
     '',

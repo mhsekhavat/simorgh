@@ -6,9 +6,19 @@ from django.db.models.aggregates import Avg
 from geoposition import Geoposition
 from geoposition.fields import GeopositionField
 from werkzeug.exceptions import LengthRequired
+from accounts.middleware import get_current_user
+from django.db.models import Q
+
+
+class ApprovedManager(models.Manager):
+    def get_queryset(self):
+        return super(ApprovedManager, self).get_queryset().filter(Q(is_approved=True) | Q(owner=get_current_user()))
 
 
 class Hotel(models.Model):
+    all = models.Manager()
+    objects = ApprovedManager()
+
     CHOICES_STARS = [(i, i * u'*') for i in range(1, 6)]
     name = models.CharField(max_length=32, verbose_name=u'نام')
     city = models.CharField(max_length=56, blank=True, verbose_name=u'شهر')
@@ -37,12 +47,22 @@ class Hotel(models.Model):
     def get_absolute_url(self):
         return reverse_lazy('hotel_view', kwargs={'pk': self.id})
 
+    def has_edit_permission(self):
+        user = get_current_user()
+        if not user.is_authenticated():
+            return False
+        if user.is_superuser:
+            return True
+        if self.owner_id == user.id:
+            return True
+        return False
+
 
 class RoomClass(models.Model):
     hotel = models.ForeignKey('hotels.Hotel', verbose_name=u'هتل')
     name = models.CharField(max_length=32, verbose_name=u'نام')
     description = models.TextField(verbose_name=u'توضیح')
-    price = models.IntegerField(verbose_name=u'قیمت')
+    price = models.PositiveIntegerField(verbose_name=u'قیمت')
     bed_count = models.PositiveIntegerField(verbose_name=u'تعداد تخت‌خواب')
     features = models.ManyToManyField('hotels.Feature', blank=True, verbose_name=u'ویژگی‌ها')
 

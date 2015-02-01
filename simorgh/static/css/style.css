@@ -45,3 +45,9 @@ dd {
   text-align: center;
   margin-left: 10px;
 }
+.estelam .form-group {
+  display: inline;
+}
+.estelam .form-group label {
+  padding-left: 0;
+}

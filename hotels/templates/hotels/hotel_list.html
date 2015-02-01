@@ -36,13 +36,26 @@
                                 <br/>
                                 {{ hotel.address }}
                             </div>
-                            <div class="col-md-3 text-center">
+                            <div class="col-md-5 text-center">
                                 {% buttons %}
-                                    <a href="{% url 'hotel_view' pk=hotel.id %}"
-                                       class="btn btn-success bt-lg">
+                                    <a href="{% url 'hotel_view' pk=hotel.id %}" class="btn {% if hotel.is_approved %} btn-success {% else %} btn-danger {% endif %} bt-lg">
                                         <span class="glyphicon glyphicon-eye-open" aria-hidden="true"/>
                                         مشاهده‌ی جزییات
                                     </a>
+                                    <br>
+                                    {% if not hotel.is_approved %}
+                                        <a class="alert-danger">
+                                        توجه: هتل تایید نشده است
+                                    {% endif %}
+                                </a>
+                                    <br>
+                                    {% if hotel.has_edit_permission %}
+                                    <a href="{% url 'hotel_edit' pk=hotel.id %}" class="btn btn-primary" style="margin-top: 15px;">
+                                            <span class="glyphicon glyphicon-edit" aria-hidden="true"/>
+                                            ویرایش
+
+                                        </a>
+                                    {% endif %}
                                 {% endbuttons %}
                             </div>
                             <div class="col-md-1">

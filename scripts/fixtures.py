@@ -66,7 +66,7 @@ def gen():
             is_for_room=not is_for_hotel,
         )
 
-    make_features(u'هتل', True)
+    make_features(u' هتل', True)
     make_features(u' اتاق', False)
 
     hotels = mommy.make_many(

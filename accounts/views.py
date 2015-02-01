@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import SuspiciousOperation
 from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import render, render_to_response
 from django.contrib.auth import authenticate, login, logout
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect, HttpResponse, Http404
 from django.template.context import RequestContext
+from django.views.generic import View
 from django.views.generic.edit import UpdateView
 from accounts.forms import UserForm, UserProfileForm, UserProfileEditForm
 from accounts.models import UserProfile
@@ -14,6 +16,7 @@ from django.utils import timezone
 from django.shortcuts import get_object_or_404
 from django.contrib import messages
 import hashlib, datetime, random
+from hotels.models import Hotel
 
 
 def user_login(request):
@@ -142,3 +145,23 @@ class AccountsEdit(UpdateView):
         else:
             return reverse_lazy('accounts_edit')
 
+
+class HotelPermissionMixin(View):
+    editing = True
+
+    def dispatch(self, request, *args, **kwargs):
+        try:
+            hotel = Hotel.objects.get(id=kwargs['pk'])
+        except Hotel.DoesNotExist:
+            raise Http404()
+        if self.editing:
+            if not hotel.has_edit_permission():
+                raise SuspiciousOperation()
+        return super(HotelPermissionMixin, self).dispatch(request, *args, **kwargs)
+
+
+class SuperUserMixin(View):
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_super_user:
+            raise SuspiciousOperation()
+        return super(SuperUserMixin, self).dispatch(request, *args, **kwargs)
