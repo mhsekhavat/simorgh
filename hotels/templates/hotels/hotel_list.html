@@ -1,10 +1,58 @@
 {% extends 'base.html' %}
+{% load bootstrap3 %}
+{% load thumbnail %}
+
+
 {% block content %}
-    <ul>
-    {% for hotel in object_list %}
-        <li>
-            ( <a href="{{ hotel.get_absolute_url }}"> {{ hotel }} </a> )
-        </li>
-    {% endfor %}
-    </ul>
+    <div style="padding-top: 30px">
+        <div class="container">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    لیست هتل‌ها
+                </div>
+                <table class="table">
+                    <p>
+
+                    </p>
+
+                    {% for hotel in object_list %}
+                        <div class="row">
+                            <div class="col-md-1">
+
+                            </div>
+                            <div class="col-md-3 thumbnail">
+                                <img class="hotel-image" src="{{ hotel.main_image |thumbnail_url:'avatar' }}">
+                            </div>
+                            <div class="col-md-3 text-info ">
+                                {{ hotel.name }}
+                                {% for s in hotel.get_stars_display %}
+                                    <img src="http://www.eghamat24.com/images/com/ic_staron.png">
+                                {% endfor %}
+                                <br/>
+                                <br/>
+                                <br/>
+                                {{ hotel.city }}
+                                <br/>
+                                <br/>
+                                {{ hotel.address }}
+                            </div>
+                            <div class="col-md-3 text-center">
+                                {% buttons %}
+                                    <a href="{% url 'hotel_view' pk=hotel.id %}"
+                                       class="btn btn-success bt-lg">
+                                        <span class="glyphicon glyphicon-eye-open" aria-hidden="true"/>
+                                        مشاهده‌ی جزییات
+                                    </a>
+                                {% endbuttons %}
+                            </div>
+                            <div class="col-md-1">
+
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                </table>
+            </div>
+        </div>
+    </div>
 {% endblock %}

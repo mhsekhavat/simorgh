@@ -12,6 +12,15 @@ from django.contrib import messages
 from django.shortcuts import redirect
 
 
+
+class HotelList(ListView):
+    model = Hotel
+    template_name = 'hotels/hotel_list.html'
+
+    def get_context_data(self, **kwargs):
+        return {'object_list': Hotel.objects.filter()}
+
+
 def hotels_list(request):
     nameString = request.GET.get('name', '');
     locationString = request.GET.get('location', '');
