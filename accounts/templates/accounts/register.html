@@ -25,8 +25,8 @@
 
                         {% csrf_token %}
 
-                        {{ user_form.as_p }}
-                        {{ profile_form.as_p }}
+                        {% bootstrap_form user_form %}
+                        {% bootstrap_form profile_form %}
                         {% bootstrap_button 'ثبت نام' %}
                     </form>
                 </div>

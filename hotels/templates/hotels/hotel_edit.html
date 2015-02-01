@@ -13,10 +13,11 @@
                     appendTo(document.body).submit();
         }
     </script>
+    <div class="container">
     <div class="row">
-        <div class="col-md-2"></div>
         <div class="col-md-8">
             <form action="" method="post" class="form" name="main-form">
+                {{ form.media }}
                 {% csrf_token %}
                 {% bootstrap_form form %}
                 <div class="panel panel-default">
@@ -62,7 +63,6 @@
                         {% endbuttons %}
                     </div>
                 </div>
-
 
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -137,6 +137,5 @@
                 {% endbuttons %}
             </form>
         </div>
-        <div class="col-md-2"></div>
     </div>
 {% endblock %}

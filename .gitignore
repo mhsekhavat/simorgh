@@ -39,4 +39,5 @@ nosetests.xml
 .pydevproject
 /.idea/
 /media/
+/static/
 /db.sqlite3

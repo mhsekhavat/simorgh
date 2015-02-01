@@ -2,11 +2,14 @@
 from django.core.urlresolvers import reverse_lazy
 from django.db import models
 import datetime
+from django.db.models.aggregates import Avg
+from geoposition import Geoposition
+from geoposition.fields import GeopositionField
 from werkzeug.exceptions import LengthRequired
 
 
 class Hotel(models.Model):
-    CHOICES_STARS = [(i, i*u'*') for i in range(1, 6)]
+    CHOICES_STARS = [(i, i * u'*') for i in range(1, 6)]
     name = models.CharField(max_length=32, verbose_name=u'نام')
     city = models.CharField(max_length=56, blank=True, verbose_name=u'شهر')
     owner = models.ForeignKey('auth.User')
@@ -16,18 +19,16 @@ class Hotel(models.Model):
     address = models.TextField(blank=True, verbose_name=u'آدرس')
     is_approved = models.BooleanField(default=False, verbose_name=u'تاییدیه‌ی مدیر')
     features = models.ManyToManyField('hotels.Feature', blank=True, verbose_name=u'ویژگی‌ها')
+    main_image = models.ImageField(upload_to='images/', verbose_name=u'تصویر اصلی')
+    position = GeopositionField(default=Geoposition(52.522906, 13.41156))
+
+    @property
+    def avg_starts(self):
+        return self.vote_set().aggregate(Avg('stars')).values()[0]
 
     def vote_set(self):
-        #stars = []
-        #comments = []
-        #for room_class in self.roomclass_set.all():
-        #    for reservation_order in room_class.reservationorder_set.all():
-        #        stars.append(reservation_order.vote.stars)
-
         from reservation.models import Vote
-        #for vote in Vote.objects.filter(reservation_order__hotel=self):
-            #stars.append(vote.stars)
-            #comments.append(vote.comment)
+
         return Vote.objects.filter(reservation_order__room_class__hotel=self)
 
     def __unicode__(self):
@@ -35,6 +36,7 @@ class Hotel(models.Model):
 
     def get_absolute_url(self):
         return reverse_lazy('hotel_view', kwargs={'pk': self.id})
+
 
 class RoomClass(models.Model):
     hotel = models.ForeignKey('hotels.Hotel', verbose_name=u'هتل')
@@ -51,7 +53,7 @@ class RoomClass(models.Model):
 class HotelImage(models.Model):
     hotel = models.ForeignKey('hotels.Hotel', verbose_name=u'هتل')
     caption = models.TextField(blank=True, verbose_name=u'زیرنویس عکس')
-    image = models.ImageField(upload_to = 'images/', verbose_name=u'عکس')
+    image = models.ImageField(upload_to='images/', verbose_name=u'عکس')
 
     def __unicode__(self):
         return self.caption
@@ -59,7 +61,7 @@ class HotelImage(models.Model):
 
 class Feature(models.Model):
     name = models.CharField(max_length=128, verbose_name=u'نام')
-    icon = models.ImageField(verbose_name=u'عکس')
+    icon = models.URLField(verbose_name=u'آدرس عکس')
     is_for_hotel = models.BooleanField(default=True, verbose_name=u'برای هتل')
     is_for_room = models.BooleanField(default=True, verbose_name=u'برای اتاق')
 

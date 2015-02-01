@@ -4,24 +4,83 @@
 {% block content %}
     <div class="container hotel-view" style="padding-top: 30px">
         <div class="row">
-            <div class="col-md-10">
-                <div class="panel panel-default">
+            <div class="col-md-7">
+                <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <h3 class="panel-title">{{ hotel.name }}</h3>
+                        <h1 class="panel-title">{{ hotel.name }}</h1>
                     </div>
                     <div class="panel-body">
-                        <img class="hotel-image" src="{{ MEDIA_URL }}{{ hotel.hotelimage_set.first.image }}">
-                        <ul>
-                            {{ hotel.id }}
-                        </ul>
-                        <ul>
-                            {{ hotel.address }}
-                        </ul>
-                        <ul>
-                            {% for roomClass in hotel.roomclass_set.all %}
-                                <li>{{ roomClass.name }}</li>
-                            {% endfor %}
-                        </ul>
+                        <img class="hotel-image" src="{{ MEDIA_URL }}{{ hotel.main_image }}">
+                        {% for feature in hotel.features.all %}
+                            <span class="label label-success">
+                                <img src="{{ feature.icon }}">
+                                {{ feature.name }}
+                                </span>
+                            &nbsp;
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <div class="panel-title">
+                            مشخصات
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <dl class="dl-horizontal">
+                            <dt>
+                                تعداد اتاق
+                            </dt>
+                            <dd>
+                                {{ hotel.room_count }}
+                            </dd>
+                            <dt>
+                                کیفیت
+                            </dt>
+                            <dd>
+                                {% for s in hotel.get_stars_display %}
+                                    <img src="http://www.eghamat24.com/images/com/ic_staron.png">
+                                {% endfor %}
+                            </dd>
+                            <dt>
+                                امتیاز در سایت
+                            </dt>
+                            <dd>
+                                {{ hotel.avg_starts }}
+                            </dd>
+                            <dt>
+                                شهر
+                            </dt>
+                            <dd>
+                                {{ hotel.city }}
+                            </dd>
+                            <dt>
+                                آدرس
+                            </dt>
+                            <dd>
+                                {{ hotel.address }}
+                            </dd>
+                        </dl>
+
+                        <script src="http://maps.googleapis.com/maps/api/js"></script>
+                        <script>
+                            var position = new google.maps.LatLng({{ hotel.position.latitude|stringformat:"f" }}, {{ hotel.position.longitude|stringformat:"f" }});
+                            function initialize() {
+                                var mapProp = {
+                                    center: position,
+                                    zoom: 15,
+                                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                                };
+                                var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+                                new google.maps.Marker({
+                                    position: position
+                                }).setMap(map);
+                            }
+                            google.maps.event.addDomListener(window, 'load', initialize);
+                        </script>
+                        <div id="googleMap" style="width:430px;height:380px;"></div>
                     </div>
                 </div>
             </div>

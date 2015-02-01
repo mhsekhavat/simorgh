@@ -46,6 +46,7 @@ INSTALLED_APPS = (
     'hotels',
     'accounts',
     'easy_thumbnails',
+    'geoposition',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -119,3 +120,7 @@ THUMBNAIL_ALIASES = {
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+SERIALIZATION_MODULES = {
+    'geojson' : 'djgeojson.serializers'
+}

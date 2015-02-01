@@ -15,6 +15,7 @@ hotel_patterns = patterns(
         name='hotel_delete_room_class'),
     url(r'^update/removeImage/(?P<images_pk>\d+)/$', HotelRemoveImage.as_view(), name='hotel_remove_image'),
     url(r'^view/$', HotelView.as_view(), name='hotel_view'),
+    # url(r'^data.map/$', GeoJSONLayerView.as_view(model=Hotel), name='data'),
 )
 
 urlpatterns = patterns(

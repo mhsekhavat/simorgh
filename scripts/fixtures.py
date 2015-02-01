@@ -5,9 +5,11 @@ from traceback import print_tb, print_exception
 import datetime
 import traceback
 from django.conf import settings
+from django.core.files import File
 from django.core.management import call_command
 import os
 from django.db import transaction
+import itertools
 from hotels.models import Hotel, RoomClass, Feature
 from reservation.models import ReservationOrder, Payment, Vote
 
@@ -46,18 +48,19 @@ def gen():
         ) for i in range(5)
     ]
 
-    hotels = mommy.make_many(
-        Hotel,
-        4,
-        name=iter([u'هتل پارسیان', u'هتل هما', u'هتل استقلال', u'هتل امیرکبیر']),
-        owner=iter(users),
-    )
-
     feature_names = [u'لابی', u'آسانسور', u'لاندری', u'ماهواره', u'وای‌فای', u'آکواریوم', u'دشویی']
+
+    def random_features(is_for_hotel):
+        is_for_room = not is_for_hotel
+        return random.sample(list(Feature.objects.filter(is_for_hotel=is_for_hotel, is_for_room=is_for_room)), 3)
+
+
     mommy.make_many(
         Feature,
         len(feature_names),
-        name=iter(feature_names),
+        name=iter(i + u' هتل' for i in feature_names),
+        icon=cycle(
+            ['http://www.eghamat24.com/images/com/ic_sobhane.png', 'http://www.eghamat24.com/images/com/ic_rest.png']),
         is_for_hotel=True,
         is_for_room=False,
     )
@@ -65,15 +68,24 @@ def gen():
     mommy.make_many(
         Feature,
         len(feature_names),
-        name=iter(feature_names),
+        name=iter(i + u' اتاق' for i in feature_names),
         is_for_hotel=False,
         is_for_room=True,
     )
 
-
-    def random_features(is_for_hotel):
-        is_for_room = not is_for_hotel
-        return random.sample(list(Feature.objects.filter(is_for_hotel=is_for_hotel, is_for_room=is_for_room)), 3)
+    hotels = mommy.make_many(
+        Hotel,
+        4,
+        name=iter([u'هتل پارسیان', u'هتل هما', u'هتل استقلال', u'هتل امیرکبیر']),
+        address=u'نرسیده به آزادی، دانشگاه شریف، دانشکده کامپیوتر، آزمایشگاه طبقه چهارم',
+        city=cycle([u'تهران', u'اصفهان']),
+        main_image=iter(
+            File(open(os.path.join(settings.BASE_DIR, 'images/hotel%d.jpg' % i), 'rb'))
+            for i in itertools.count()
+        ),
+        features=random_features(True),
+        owner=iter(users),
+    )
 
     room_classes = []
     for hotel in hotels:
@@ -160,9 +172,11 @@ def gen():
     votes = mommy.make_many(
         Vote,
         6,
-        reservation_order= iter([r1, r2, r3, r4, r5, r6]),
-        stars= cycle(iter([1, 2, 2, 2, 3, 4, 5])),
-        release_date=cycle(iter([datetime.datetime(2012, 2, 6), datetime.datetime(2013, 5, 7), datetime.datetime(2012, 11, 20), datetime.datetime(2010, 7, 26)]))
+        reservation_order=iter([r1, r2, r3, r4, r5, r6]),
+        stars=cycle(iter([1, 2, 2, 2, 3, 4, 5])),
+        release_date=cycle(iter(
+            [datetime.datetime(2012, 2, 6), datetime.datetime(2013, 5, 7), datetime.datetime(2012, 11, 20),
+             datetime.datetime(2010, 7, 26)]))
     )
 
     os.chdir(cwd)
