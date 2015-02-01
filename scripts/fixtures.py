@@ -10,7 +10,8 @@ from django.core.management import call_command
 import os
 from django.db import transaction
 import itertools
-from hotels.models import Hotel, RoomClass, Feature
+from loremipsum.generator import Generator
+from hotels.models import Hotel, RoomClass, Feature, HotelImage
 from reservation.models import ReservationOrder, Payment, Vote
 
 
@@ -54,24 +55,19 @@ def gen():
         is_for_room = not is_for_hotel
         return random.sample(list(Feature.objects.filter(is_for_hotel=is_for_hotel, is_for_room=is_for_room)), 3)
 
+    def make_features(postfix, is_for_hotel):
+        mommy.make_many(
+            Feature,
+            len(feature_names),
+            name=iter(i + postfix for i in feature_names),
+            icon=cycle(
+                ['http://www.eghamat24.com/images/com/ic_sobhane.png', 'http://www.eghamat24.com/images/com/ic_rest.png']),
+            is_for_hotel=is_for_hotel,
+            is_for_room=not is_for_hotel,
+        )
 
-    mommy.make_many(
-        Feature,
-        len(feature_names),
-        name=iter(i + u' هتل' for i in feature_names),
-        icon=cycle(
-            ['http://www.eghamat24.com/images/com/ic_sobhane.png', 'http://www.eghamat24.com/images/com/ic_rest.png']),
-        is_for_hotel=True,
-        is_for_room=False,
-    )
-
-    mommy.make_many(
-        Feature,
-        len(feature_names),
-        name=iter(i + u' اتاق' for i in feature_names),
-        is_for_hotel=False,
-        is_for_room=True,
-    )
+    make_features(u'هتل', True)
+    make_features(u' اتاق', False)
 
     hotels = mommy.make_many(
         Hotel,
@@ -89,12 +85,20 @@ def gen():
 
     room_classes = []
     for hotel in hotels:
+        for i in range(6):
+            mommy.make_one(
+                HotelImage,
+                hotel=hotel,
+                caption=u'تصویر %d ام هتل' % i,
+                image=File(open(os.path.join(settings.BASE_DIR, 'images/hotel%d.jpg' % i), 'rb')),
+            )
         for i in range(3):
             room_class = mommy.make_one(
                 RoomClass,
                 hotel=hotel,
                 name=u'درجه ' + str(i),
-                features=random_features(is_for_hotel=False)
+                features=random_features(is_for_hotel=False),
+                description=lambda: Generator(u'نمتسیب منتسب متشسیبمن شسبمت سیمبنتشسمب سمنب منستیب سنیبتنیب زنرتنسی بنیتبنسبتنس سینبسنتب سنتبنسب سنتعزرههصپثدپ ننزعیت شسمنتبی', u'منتسیب مسشتب مسشبمنسش بمنسشتبمنسش سیب سنبیتس زهعثص زپر نسع منبسشب مسشبنتسشی منبسشمنبشس منبمنسشب'.split()).generate_paragraph()[2],
             )
             room_classes.append(room_class)
 
@@ -174,6 +178,7 @@ def gen():
         6,
         reservation_order=iter([r1, r2, r3, r4, r5, r6]),
         stars=cycle(iter([1, 2, 2, 2, 3, 4, 5])),
+        comment=cycle(['خوب بود ممون', 'افتضاح بود']),
         release_date=cycle(iter(
             [datetime.datetime(2012, 2, 6), datetime.datetime(2013, 5, 7), datetime.datetime(2012, 11, 20),
              datetime.datetime(2010, 7, 26)]))

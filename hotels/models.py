@@ -42,7 +42,7 @@ class RoomClass(models.Model):
     hotel = models.ForeignKey('hotels.Hotel', verbose_name=u'هتل')
     name = models.CharField(max_length=32, verbose_name=u'نام')
     description = models.TextField(verbose_name=u'توضیح')
-    price = models.PositiveIntegerField(verbose_name=u'قیمت')
+    price = models.IntegerField(verbose_name=u'قیمت')
     bed_count = models.PositiveIntegerField(verbose_name=u'تعداد تخت‌خواب')
     features = models.ManyToManyField('hotels.Feature', blank=True, verbose_name=u'ویژگی‌ها')
 
