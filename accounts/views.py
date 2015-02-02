@@ -162,6 +162,6 @@ class HotelPermissionMixin(View):
 
 class SuperUserMixin(View):
     def dispatch(self, request, *args, **kwargs):
-        if not request.user.is_super_user:
+        if not request.user.is_superuser:
             raise SuspiciousOperation()
         return super(SuperUserMixin, self).dispatch(request, *args, **kwargs)
